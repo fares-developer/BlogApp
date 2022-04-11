@@ -4,29 +4,22 @@ import android.app.Person
 
 fun main() {
 
-    /* CLASES
-    *  Cuando creamos una clases si no le especificamos atributos, estamos indicando que la creación
-    * de una instancia se hará con un constructor vacío(sin argumentos).En cambio si se lo pasamos
-    * debemos indicar si es mutable o no, debemos especificar siempre el tipo de dato
-    * */
-    val fares: Persona = Persona("Fares","Endong")
-    fares.bienvenida()
-
-    val owoldo: Persona = Persona()
-    owoldo.bienvenida()
-
-}
-
-class Persona(private val nombre: String="none", private val apellido: String="Endong") {
     /*
-    * Con la palabra clave private en este caso indicamos que las variables sólo son accesible dentro
-    * de la clase.
-    *
-    * En las clases podemos crear instancias sin pasarle ningún parámetro aunque el constructor lo
-    * requiera, esto lo hacemos estableciendo un valor por defecto.
+    * DATA CLASES
+      Las data clases se utilizan para almacenar algún tipo de información en específico, por ejemplo
+      * un objeto de tipo usuario
     * */
 
-    fun bienvenida() {
-        println("Bienvenido $nombre $apellido")
-    }
+    val usuario = User("Fares",20)
+    //Con el copy podemos coger los datos de otra clase y modificarlos
+    val usuario2 = usuario.copy(edad = 24)
+    println(usuario.toString())
+    println(usuario2.toString())
+    //Con el operador $ y las llaves podemos hacer operaciones con varibales, llamar funciones,etc.
+    println("Son iguales: ${usuario.equals(usuario2)}")
+
 }
+
+//Con el método toString en los data class se imprime to-do su contenido
+data class User(val nombre: String, val edad: Int)
+
