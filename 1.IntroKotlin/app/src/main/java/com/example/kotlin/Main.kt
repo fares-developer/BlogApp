@@ -1,5 +1,7 @@
 package com.example.kotlin
 
+import android.app.Person
+
 fun main() {
 
     /* CLASES
@@ -10,9 +12,19 @@ fun main() {
     val fares: Persona = Persona("Fares","Endong")
     fares.bienvenida()
 
+    val owoldo: Persona = Persona()
+    owoldo.bienvenida()
+
 }
 
-class Persona(val nombre: String, val apellido: String) {
+class Persona(private val nombre: String="none", private val apellido: String="Endong") {
+    /*
+    * Con la palabra clave private en este caso indicamos que las variables sólo son accesible dentro
+    * de la clase.
+    *
+    * En las clases podemos crear instancias sin pasarle ningún parámetro aunque el constructor lo
+    * requiera, esto lo hacemos estableciendo un valor por defecto.
+    * */
 
     fun bienvenida() {
         println("Bienvenido $nombre $apellido")
