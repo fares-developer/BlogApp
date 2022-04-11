@@ -1,21 +1,26 @@
 package com.example.kotlin
 /*
-* CONSTANTES
-* Las constantes en kotlin van precedidas de la palabra clave const, para que las constantes
-* sean accesibles desde cualquier parte de nuestro código es necesario declarar
-* "companion object"
+* ENUM CLASES
+* Las enum clases se utilizan sobre to-do para almacenar distintos objetos con
+* distintos valores.
+*
+* Las clases enum pueden contener argumentos, los cuales indicarán el comportamiento o propiedades de
+* los objetos que contiene la clase enum
 *
 * */
 
-const val direction = "11 de Abril"
 
 fun main() {
-    println(Constantes.direccion)
+    val dias = DIAS.LUNES.numero
+    println(dias)
 }
 
-class Constantes{
-    companion object{// Esto es similar al public static final de java
-        const val direccion = "11 de Abril"
-    }
+enum class DIAS(val numero:Int){
+    LUNES(1),
+    MARTES(2),
+    MIERCOLES(3),
+    JUEVES(4),
+    VIERNES(5),
+    SABADO(6),
+    DOMINGO(7)
 }
-
