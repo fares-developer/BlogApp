@@ -1,20 +1,20 @@
 package com.example.kotlin
-/*
-* FUNCIONES
-*Las funciones van precedidas de la palabra clave "fun" y los parámetros  se definen utilizando
-* la notación de Pascal: nombre : tipo
-*
-*Los parámetros de función pueden tener valores predeterminados, que se utilizan cuando omite
-*el argumento correspondiente al igual que en los constructores de las clases.
-*Esto reduce el número de sobrecargas
-* */
+
+import java.util.*
 
 
 fun main() {
-    println(esPar(10))
-    println(esPar())//Si no se pasa ningún argumento toma el argumento por defecto
+
+    val num = getNum()
+    val num2 = getNum()
+
+    //La siguiente expresion es un equivalente al operador ternario en java
+    val m = if (num > num2) "El número $num es mayor " else "$num no es mayor"
+    println(m)
 }
 
-fun esPar(numero: Int = 2): Boolean {
-    return numero % 2 == 0
+fun getNum(): Int {
+    val sc: Scanner = Scanner(System.`in`)
+    println("Introduzca un numero")
+    return sc.nextInt()
 }
