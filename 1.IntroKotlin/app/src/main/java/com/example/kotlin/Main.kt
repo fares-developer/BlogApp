@@ -1,20 +1,24 @@
 package com.example.kotlin
 
-import java.util.*
-
-
 fun main() {
 
-    val num = getNum()
-    val num2 = getNum()
+    /*
+    * Para trabajar con el bucle for haremos una breve intro sobre creacion de listas
+    * en kotlin.
+    *
+    * */
 
-    //La siguiente expresion es un equivalente al operador ternario en java
-    val m = if (num > num2) "El número $num es mayor " else "$num no es mayor"
-    println(m)
-}
+    val listaMutable = mutableListOf<String>("Fares","Owoldo","Leti","Yoel","Mael","Jael")
+    listaMutable.add(listaMutable.indexOf("Owoldo"),"Axel")
+    listaMutable.remove("Owoldo")
 
-fun getNum(): Int {
-    val sc: Scanner = Scanner(System.`in`)
-    println("Introduzca un numero")
-    return sc.nextInt()
+    //Si queremos imoprimir los elementos de la lista con sus respectivos índices hacemos lo siguiente
+    for ((index, value) in listaMutable.withIndex()) {
+        println("Índice: $index Valor: $value")
+    }
+    println("------------------------------------------------------------")
+    //También podemos utilizar el método forEach directamente
+    listaMutable.forEachIndexed { index, it ->
+        println("Índice: $index Valor: $it")
+    }
 }
