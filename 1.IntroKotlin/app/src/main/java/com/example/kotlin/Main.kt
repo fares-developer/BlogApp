@@ -3,22 +3,19 @@ package com.example.kotlin
 fun main() {
 
     /*
-    * Para trabajar con el bucle for haremos una breve intro sobre creacion de listas
-    * en kotlin.
+    * CONDICIONAL WHEN
+    * El condicional when en kotlin es un equivalente del switch de java, el condicional
+    * when tiene muchas utilidades, para más info míra en la página de kotlin
     *
     * */
 
-    val listaMutable = mutableListOf<String>("Fares","Owoldo","Leti","Yoel","Mael","Jael")
-    listaMutable.add(listaMutable.indexOf("Owoldo"),"Axel")
-    listaMutable.remove("Owoldo")
+    when ((1..10).random()) {
+        1 -> println("X vale 1")
+        2 -> println("X vale 2")
+        3 -> println("X vale 3")
+        4 -> println("X vale 4")
+        5 -> println("X vale 5")
+        else -> println("Valor no registrado")
+    }
 
-    //Si queremos imoprimir los elementos de la lista con sus respectivos índices hacemos lo siguiente
-    for ((index, value) in listaMutable.withIndex()) {
-        println("Índice: $index Valor: $value")
-    }
-    println("------------------------------------------------------------")
-    //También podemos utilizar el método forEach directamente
-    listaMutable.forEachIndexed { index, it ->
-        println("Índice: $index Valor: $it")
-    }
 }
