@@ -1,26 +1,20 @@
 package com.example.kotlin
 /*
-* ENUM CLASES
-* Las enum clases se utilizan sobre to-do para almacenar distintos objetos con
-* distintos valores.
+* FUNCIONES
+*Las funciones van precedidas de la palabra clave "fun" y los parámetros  se definen utilizando
+* la notación de Pascal: nombre : tipo
 *
-* Las clases enum pueden contener argumentos, los cuales indicarán el comportamiento o propiedades de
-* los objetos que contiene la clase enum
-*
+*Los parámetros de función pueden tener valores predeterminados, que se utilizan cuando omite
+*el argumento correspondiente al igual que en los constructores de las clases.
+*Esto reduce el número de sobrecargas
 * */
 
 
 fun main() {
-    val dias = DIAS.LUNES.numero
-    println(dias)
+    println(esPar(10))
+    println(esPar())//Si no se pasa ningún argumento toma el argumento por defecto
 }
 
-enum class DIAS(val numero:Int){
-    LUNES(1),
-    MARTES(2),
-    MIERCOLES(3),
-    JUEVES(4),
-    VIERNES(5),
-    SABADO(6),
-    DOMINGO(7)
+fun esPar(numero: Int = 2): Boolean {
+    return numero % 2 == 0
 }
