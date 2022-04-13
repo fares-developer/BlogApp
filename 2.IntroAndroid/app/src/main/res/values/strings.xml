@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">IntroAndroid</string>
     <string name="texto_inicial">Mi primer textview</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="volver">Volver</string>
+    <string name="segundo_activity">Segundo Activity</string>
 </resources>

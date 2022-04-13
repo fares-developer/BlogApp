@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.introandroid">
-    <!-- android:label, hace referencia al nombre de la app
-         android:icon, hace referencia al icono por defecto
-         android:roundIcon, hace referencia al icono redondo si lo admite
-         android:supportsRtl, para el soporte en países de orientacion RL
-    -->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,15 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IntroAndroid">
         <activity
+            android:name=".Activity2"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <!-- Esta etiqueta indica el comportamiento de la actividad -->
             <intent-filter>
+
                 <!-- Esta etiqueta indica que es la activity principal -->
                 <action android:name="android.intent.action.MAIN" />
 
-                <!-- Esta etiqueta indica que esta activity será
-                 la primera en mostrarse cuando se ejecute la aplicación -->
+                <!--
+                 Esta etiqueta indica que esta activity será
+                 la primera en mostrarse cuando se ejecute la aplicación
+                -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
