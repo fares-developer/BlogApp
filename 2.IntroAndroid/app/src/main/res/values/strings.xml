@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IntroAndroid</string>
+    <string name="texto_inicial">Mi primer textview</string>
 </resources>
