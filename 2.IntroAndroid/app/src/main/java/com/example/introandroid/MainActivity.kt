@@ -9,8 +9,19 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+    /*
+    * FRAGMENTS
+    * El uso de numerosas actividades reduce el rendimiento de una aplicacion, hace las navegaciones
+    * más pesadas,etc. Para resolver esto se crean los fragmentos, los cuales viven en una actividad
+    * la cual es su padre, y al igaul que una actividad tiene su propio ciclo de vida.
+    *
+    * Una actividad puede contener varios fragments los cuales se gestionan con el FragmentManager,
+    * el cual crea una pila de fragments los cuales va crean y eliminando a medida que navegamos entre
+    * los fragments
+    *
+    * */
 
-    private lateinit var texto:TextView //Con lateninit podemos inicializar la variable antes de su uso
+    private lateinit var texto:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener { navegarAct2() }
     }
 
-    //Con esta funcion obtenemos los datos del intent destino
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -34,15 +44,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navegarAct2() {
-        /*Un intent define acciones. this hace referencia a la clase origen.
-        * Los :: hacen se utilizan para hacer referencias de miembro y clase
-        * */
         val intent = Intent(this, Activity2::class.java)
-        /*Para enviar datos entre activities necesitamos llamar a la función put
-        * */
         intent.putExtra("nombre", "Curso Android")
-        //Esta instrucción inicia otro activity para obtener un resultado
-        //El requestcode puede ser cualquier entero y es el que utilizaremos en el intent destino
         startActivityForResult(intent, 1)
     }
 
