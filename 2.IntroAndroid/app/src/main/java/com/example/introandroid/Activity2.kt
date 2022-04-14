@@ -1,10 +1,15 @@
 package com.example.introandroid
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 
 class Activity2 : AppCompatActivity() {
+
+    var nombre : String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_2)
@@ -16,8 +21,19 @@ class Activity2 : AppCompatActivity() {
         * */
 
         val button = findViewById<Button>(R.id.boton)
-        button.setOnClickListener { //Establecemos el oyente/listener
-            finish()//Con finish destruimos el activity
+        val texto = findViewById<TextView>(R.id.texto)
+
+        //Para obtener los datos del intent origen hacemos lo siguiente
+        intent.extras?.let {
+            nombre = it.getString("nombre")
+        }
+
+        texto.text = nombre
+        button.setOnClickListener {
+            val intent = Intent()
+            intent.putExtra("nombre2","Saludos desde Activity 2")
+            setResult(Activity.RESULT_OK,intent)//Con esto devolvemos un resultado
+            finish()
         }
     }
 }
