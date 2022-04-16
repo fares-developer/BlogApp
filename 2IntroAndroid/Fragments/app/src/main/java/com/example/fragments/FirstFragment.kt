@@ -19,9 +19,8 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
         val button = view.findViewById<Button>(R.id.navegar)
         button.setOnClickListener {
-            requireActivity().supportFragmentManager.commit {//Esto es para navegar al otro fragment
-                //Añadir el fragment y lo remplazamos el secondFragment en el contenedor
-                replace(R.id.fragment_container_view,SecondFragment())
+            requireActivity().supportFragmentManager.commit {
+                replace(R.id.fragment_container_view,SecondFragment.newInstance("Fares",20  ))
                 addToBackStack("primerFragment")//Para poder navegar sin problemas con este id
             }
         }
