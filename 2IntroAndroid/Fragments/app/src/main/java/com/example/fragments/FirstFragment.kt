@@ -17,7 +17,6 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val texto = view.findViewById<TextView>(R.id.texto)
         val button = view.findViewById<Button>(R.id.navegar)
         button.setOnClickListener {
             requireActivity().supportFragmentManager.commit {//Esto es para navegar al otro fragment

@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +24,20 @@ class MainActivity : AppCompatActivity() {
     * */
 
     private lateinit var texto:TextView
+    /*Ya que los métodos startActivityForResult o onActivityResult están deprecated procederemos de
+      otra manera, en este caso recurrimos al método registerForActivityResult. Para arreglarlo es
+      necesario recurrir a los siguientes enlances.
+
+      -YouTube https://www.youtube.com/watch?v=6Fi0fNDvWWE
+      -StackOverFlow https://stackoverflow.com/questions/62671106/onactivityresult-method-is-deprecated-what-is-the-alternative/64156462#64156462
+      */
+    private val responseLauncher =
+        registerForActivityResult(StartActivityForResult()){
+            if (it.resultCode == Activity.RESULT_OK) {//Comprobamos que se el resultado fue exitoso
+                val nombre = it.data?.getStringExtra("nombre2")
+                texto.text = nombre
+            }
+        };
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,21 +48,10 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener { navegarAct2() }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == 1) {//Comprobamos el código de respuesta arriba indicado
-            if (resultCode == Activity.RESULT_OK) {//Comprobamos que se el resultado fue exitoso
-                val nombre = data?.getStringExtra("nombre2")
-                texto.text = nombre
-            }
-        }
-    }
-
     private fun navegarAct2() {
         val intent = Intent(this, Activity2::class.java)
         intent.putExtra("nombre", "Curso Android")
-        startActivityForResult(intent, 1)
+        responseLauncher.launch(intent)
     }
 
 
