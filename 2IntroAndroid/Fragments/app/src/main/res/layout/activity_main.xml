@@ -13,7 +13,9 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.example.fragments.FirstFragment"/>
+        android:layout_height="match_parent"/>
+    <!-- Es necesario eliminar la etiqueta name si el renderizado
+         se hace desde el fichero kotlin, evitar errores de sobreescritura
+         -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

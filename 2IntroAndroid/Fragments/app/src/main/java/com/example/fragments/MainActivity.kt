@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //Con esto establecemos el fragmento por defecto, es lo mismo que poner el nombre del fragemnt
-        // en el fragmentContainerView
+        // en el fragmentContainerView del fichero xml
         supportFragmentManager.commit {
             setReorderingAllowed(true)//Para que las animaciones y transiciones se ejecuten correctmn
             add(R.id.fragment_container_view,FirstFragment())

@@ -22,7 +22,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         val button = view.findViewById<Button>(R.id.navegar)
 
         //Establecemos una alguna clase de listener para fragments
-        //Esto se dispara cada vez que pongames un resultado desde el otro fragment
+        //Esto se dispara cada vez que pongamos un resultado desde el otro fragment
         setFragmentResultListener("requestKey") { key, bundle ->
             val result = bundle.getString("bundleKey")
             texto.text = result
