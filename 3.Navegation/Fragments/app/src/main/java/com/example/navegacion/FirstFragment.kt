@@ -39,6 +39,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
             * */
 
             //Creamos la accion de ir al segundo fragment
+            //Con lo nuevo de kotlin no podemos ver las clases generadas pero podemos utilizarlas.
             val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment()
             //Ahora lo pasamos al navigate y listo.
             findNavController().navigate(action)

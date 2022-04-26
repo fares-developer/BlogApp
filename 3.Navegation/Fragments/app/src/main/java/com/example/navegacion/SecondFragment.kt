@@ -1,5 +1,6 @@
 package com.example.navegacion
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -7,6 +8,7 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 
 class SecondFragment : Fragment(R.layout.fragment_second) {
@@ -29,6 +31,19 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
         button.setOnClickListener {
             val result = "Resultado"
             setFragmentResult("requestKey", bundleOf("bundleKey" to result))
+            //Nos dirijimos a navGraph de los productos
+
+            /*Si queremos dirijirnos cualquier fragment lo podemos hacer mediante deeplinkins
+             haciendo lo siguiente:
+
+             -Eliminamos la flecha que enlaza este fragment con producto_graph
+             -Añadimos el DeepLink
+             -En el manifest dentro de la actividad que contiene todos los fragments, declaramos
+              la ubicacion del deeplink con nav-graph.
+             -En el navigate más abajo sustituimos producto_graph por el deeplink.
+
+             */
+            findNavController().navigate(Uri.parse("navegation://cards"))
         }
 
         val text = view.findViewById<TextView>(R.id.txt_output)

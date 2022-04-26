@@ -12,6 +12,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <!-- Declaramos la ubicación del deeplink, si no lo hacemos nuestra app nunca
+                 sabra dónde encontrar el deeplink-->
+            <nav-graph android:value="@navigation/producto_graph"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
