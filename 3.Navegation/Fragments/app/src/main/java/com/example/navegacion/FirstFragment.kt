@@ -10,6 +10,11 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 
+/*
+* Ahora vamos pasar argumentos a trabes de un plugin de Gradle llamado SafeArgs, para ello debemos
+* ir al buildGradleProyect y añadir unas dependencias
+* */
+
 
 //Podemos crear la vista desde el contructor del fragmento así nos ahorramos el onCreateView()
 class FirstFragment : Fragment(R.layout.fragment_first) {
@@ -23,7 +28,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
         //Establecemos una alguna clase de listener para fragments
         //Esto se dispara cada vez que pongamos un resultado desde el otro fragment
-        setFragmentResultListener("requestKey") { key, bundle ->
+        setFragmentResultListener("requestKey") { _, bundle ->
             val result = bundle.getString("bundleKey")
             texto.text = result
         }
@@ -33,9 +38,10 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
             * conlleva. Con findNavControler obtenemos el controler por defecto de navHostFragment
             * */
 
-            //Para pasar los argumentos(como bundles) lo agregamos al navigate
-            findNavController().navigate(R.id.action_firstFragment_to_secondFragment,
-                    bundleOf("nombre" to "Fares","edad" to 20))
+            //Creamos la accion de ir al segundo fragment
+            val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment()
+            //Ahora lo pasamos al navigate y listo.
+            findNavController().navigate(action)
 
 
         }

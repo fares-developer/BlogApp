@@ -26,5 +26,15 @@
         android:id="@+id/secondFragment"
         android:name="com.example.navegacion.SecondFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/fragment_second" >
+        <argument
+            android:name="nombre"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="NO_NAME" />
+        <argument
+            android:name="edad"
+            app:argType="integer"
+            android:defaultValue="2" />
+    </fragment>
 </navigation>

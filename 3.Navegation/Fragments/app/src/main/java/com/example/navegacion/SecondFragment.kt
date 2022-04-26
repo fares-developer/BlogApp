@@ -7,20 +7,19 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.navArgs
 
 class SecondFragment : Fragment(R.layout.fragment_second) {
 
     private var nombre: String? = ""
     private var edad: Int? = 0
+    //Creamos una variable que contendrá los argumentos que el primer fragment envía acá
+    private val args: SecondFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //Para evitar que nos salte una excepcion por ausencia de argumentos hacemos lo siguiente
-        arguments?.let {
-            nombre = it.getString(MI_NOMBRE)
-            edad = it.getInt(MI_EDAD)
-        }
-
+        nombre = args.nombre
+        edad = args.edad
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
