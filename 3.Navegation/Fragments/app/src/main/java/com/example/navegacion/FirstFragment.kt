@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.setFragmentResultListener
@@ -31,7 +32,10 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
             /* El navControler es el encargado de controlar la navegación y to-do lo que esto
             * conlleva. Con findNavControler obtenemos el controler por defecto de navHostFragment
             * */
-            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)//Le indicamos el destino de navegacion
+
+            //Para pasar los argumentos(como bundles) lo agregamos al navigate
+            findNavController().navigate(R.id.action_firstFragment_to_secondFragment,
+                    bundleOf("nombre" to "Fares","edad" to 20))
 
 
         }
