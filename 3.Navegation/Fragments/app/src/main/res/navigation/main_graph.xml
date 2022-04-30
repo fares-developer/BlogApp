@@ -36,9 +36,6 @@
             android:name="edad"
             app:argType="integer"
             android:defaultValue="2" />
-        <action
-            android:id="@+id/action_secondFragment_to_producto_graph"
-            app:destination="@id/producto_graph" />
     </fragment>
     <include app:graph="@navigation/producto_graph" />
 </navigation>
