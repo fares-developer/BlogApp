@@ -20,6 +20,20 @@
 
     </RelativeLayout>
 
+    <!--
+        RecyclerView
+        Un RecyclerView consta de diferentes partes:
+        -La propia vista
+
+        -El layoutManager encargado de la manera en que se ven o distribuyen
+        las vistas.
+
+        -Un adaptador es el encargado de recibir la información de las vistas
+        en este caso peliculas(desde el dataset) y establecerlo a cada elemento.
+
+        RecyclerView permite ahorrar memoria al reciclar las vistas que no estan
+        siendo renderizadas.
+    -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_movies"
         android:layout_width="match_parent"
