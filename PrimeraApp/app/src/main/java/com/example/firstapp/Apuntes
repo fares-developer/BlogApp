@@ -1,0 +1,15 @@
+
+EXPLICACIÓN
+
+-Arquitectura
+Utilizaremos generalmente la conocida como arquitectura limpia en android:
+
+            #################################
+            ####         ENTITIES       #####
+            #################################
+            ###          USE CASES      #####
+            #################################
+            ### REPOSITORIES | PRESENTERS ###
+            #################################
+            ###   WEB   DB   |      UI    ###
+            #################################
