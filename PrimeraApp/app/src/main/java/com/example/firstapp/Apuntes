@@ -19,7 +19,7 @@ Más información en https://developer.android.com/jetpack/guide?hl=es-419
 -ACTIVITY/FRAGMENT(UI)
 En esta capa se muestra to-do lo que el usuario ve e interactúa
 
--ViewModel y LiveData
+-ViewModel y LiveData(Presentation)
 En esta capa se gestionan las vistas del apartado anterior almacenando información de aquellas vistas
 ya renderizadas y su información así no tienen que regenerarse to-do el rato
 
