@@ -2,14 +2,14 @@
 EXPLICACIÓN
 
 -Arquitectura
-Utilizaremos generalmente la conocida como arquitectura limpia en android:
+Utilizaremos generalmente la conocida como MVVM:
 
-            #################################
-            ####         ENTITIES       #####
-            #################################
-            ###          USE CASES      #####
-            #################################
-            ### REPOSITORIES | PRESENTERS ###
-            #################################
-            ###   WEB   DB   |      UI    ###
-            #################################
+                        #################################
+                               ACTIVITY/FRAGMENT
+                        #################################
+                             VIEWMODEL (LIVE DATA)
+                        #################################
+SQLITE <------ MODEL(ROOM) <--------@REPOSITORY@-------> REMOTE DATA SOURCE (RETROFIT)--> WEBSERVICE
+
+
+Más información en https://developer.android.com/jetpack/guide?hl=es-419
