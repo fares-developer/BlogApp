@@ -5,11 +5,28 @@ EXPLICACIÓN
 Utilizaremos generalmente la conocida como MVVM:
 
                         #################################
-                               ACTIVITY/FRAGMENT
+                               ACTIVITY/FRAGMENT        --> Lo que el usuario ve
                         #################################
-                             VIEWMODEL (LIVE DATA)
+                             VIEWMODEL (LIVE DATA)      --> Lo se necesita para ver los fragments/activities
                         #################################
-SQLITE <------ MODEL(ROOM) <--------@REPOSITORY@-------> REMOTE DATA SOURCE (RETROFIT)--> WEBSERVICE
+                                @REPOSITORY@ (Se encarga de buscar la info que necesitamos para la app por diferentes vías
+                                     / \
+SQLITE <------ MODEL(ROOM) <--------/   \-------> REMOTE DATA SOURCE (RETROFIT)--> WEBSERVICE
 
 
 Más información en https://developer.android.com/jetpack/guide?hl=es-419
+
+-ACTIVITY/FRAGMENT(UI)
+En esta capa se muestra to-do lo que el usuario ve e interactúa
+
+-ViewModel y LiveData
+En esta capa se gestionan las vistas del apartado anterior almacenando información de aquellas vistas
+ya renderizadas y su información así no tienen que regenerarse to-do el rato
+
+-REPOSITORY
+En esta capa nos encargamos de implementar una interfaz y una clase que trabajaran en conjunto, donde
+definiremos cómo se van a buscar los recursos que necesitamos para la aplicacion.
+
+-DATA
+En esta capa encontramos los datos con los que trabajaremos ya sea en local (SQlite) o en remoto(Retrofit y otros),
+esta capa requiere del modelo del viewModel
