@@ -30,3 +30,14 @@ definiremos cómo se van a buscar los recursos que necesitamos para la aplicacio
 -DATA
 En esta capa encontramos los datos con los que trabajaremos ya sea en local (SQlite) o en remoto(Retrofit y otros),
 esta capa requiere del modelo del viewModel
+
+
+
+-CORRUTINAS
+Las utilizaremos para no tener que hacer llamadas constantes sin saber cuándo el servidor
+nos responde y trae los datos. Las corrutinas es una función que se puede suspender
+hasta que no haya realizado su tarea, por ejemplo si hacemos una petición al servidor y este tarda
+en responder, la función se pone en suspensión hasta que responda el servidor, momento en el que
+se reanuda y concluye.
+
+Más información en https://developer.android.com/kotlin/coroutines?hl=es&gclid=CjwKCAjwgr6TBhAGEiwA3aVuIXnlDkrAGC2jSgxAF4bz8fAclO4O1rd-U-JVgn55bjwurhP-gY6eRhoCDb0QAvD_BwE&gclsrc=aw.ds
