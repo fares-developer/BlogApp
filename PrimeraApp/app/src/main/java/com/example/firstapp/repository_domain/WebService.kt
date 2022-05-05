@@ -1,9 +1,8 @@
-package com.example.firstapp.repository
+package com.example.firstapp.repository_domain
 
-import com.example.firstapp.application.AppConstants
+import com.example.firstapp.application_utils.AppConstants
 import com.example.firstapp.data.model.MovieList
 import com.google.gson.GsonBuilder
-import com.google.gson.internal.GsonBuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -30,6 +29,6 @@ object RetrofitClient {
             .baseUrl(AppConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .build().create(WebService::class.java)
-        //Con esto convertimos nuestra peticion en JSON para trabajar los datos
+        //Con esto convertimos nuestra peticion JSON para trabajar los datos
     }
 }

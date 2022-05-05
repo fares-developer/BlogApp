@@ -1,4 +1,4 @@
-package com.example.firstapp.repository
+package com.example.firstapp.repository_domain
 
 import com.example.firstapp.data.model.MovieList
 import com.example.firstapp.data.remote.MovieDataSource

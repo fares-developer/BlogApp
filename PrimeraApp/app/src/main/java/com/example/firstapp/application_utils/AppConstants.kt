@@ -1,4 +1,4 @@
-package com.example.firstapp.application
+package com.example.firstapp.application_utils
 
 object AppConstants {
     //API

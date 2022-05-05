@@ -1,9 +1,8 @@
 package com.example.firstapp.data.remote
 
-import com.example.firstapp.application.AppConstants
-import com.example.firstapp.data.model.Movie
+import com.example.firstapp.application_utils.AppConstants
 import com.example.firstapp.data.model.MovieList
-import com.example.firstapp.repository.WebService
+import com.example.firstapp.repository_domain.WebService
 
 //En esta clase incluiremos código que haga llamadas al servidor para traer la info
 class MovieDataSource(private val webservice:WebService) {
