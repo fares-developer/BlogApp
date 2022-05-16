@@ -2,20 +2,27 @@ package com.example.firstapp.ui.movie
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ConcatAdapter
 import com.example.firstapp.R
 import com.example.firstapp.core.Resource
+import com.example.firstapp.data.model.Movie
 import com.example.firstapp.data.remote.MovieDataSource
 import com.example.firstapp.databinding.FragmentMovieBinding
 import com.example.firstapp.presentation.MovieViewModel
 import com.example.firstapp.presentation.MovieViewModelFactory
 import com.example.firstapp.repository_domain.MovieRepositoryImpl
 import com.example.firstapp.repository_domain.RetrofitClient
+import com.example.firstapp.ui.movie.adapters.MovieAdapter
+import com.example.firstapp.ui.movie.adapters.concat.PopularConcatAdapter
+import com.example.firstapp.ui.movie.adapters.concat.TopRatedConcatAdapter
+import com.example.firstapp.ui.movie.adapters.concat.UpcomingConcatAdapter
 
-class MovieFragment : Fragment(R.layout.fragment_movie) {
+class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieClickListener {
     /*
    * ViewBinding
    * Es muy utilizado para hacer referencia a las vistas de nuestros layouts,
@@ -38,9 +45,12 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
         MovieViewModelFactory(MovieRepositoryImpl(MovieDataSource(RetrofitClient.webservice)))
     }
 
+    private lateinit var concatAdapter: ConcatAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMovieBinding.bind(view)
+        concatAdapter = ConcatAdapter()
 
         /*A continuación hacemos una llamada con el viewModel y ya que devuelve un liveData
         * debemos observar para ver cuándo va a retornar un valor, lo cual hacemos con el
@@ -51,12 +61,28 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
         viewModel.fetchMainScreenMovies().observe(viewLifecycleOwner, Observer {result ->
             when (result) {
                 is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                     Log.d("liveData", "Loading...")
                 }
                 is Resource.Success -> {
-                    Log.d("liveData", "Upcoming: ${result.data.first}")
-                    Log.d("liveData", "Top Rated: ${result.data.second} ")
-                    Log.d("liveData", "Popular: ${result.data.third} ")
+                    binding.progressBar.visibility = View.GONE
+
+                    /*Ahorra configuramos el concat adapter para que se muestren la películas
+                    * en el orden que yo quiera. Es importante recordar que debemos implementar
+                    * la interfaz de OnMovieListener para usarlo en el concatAdapter.apply*/
+                    concatAdapter.apply {
+                        addAdapter(0,
+                            UpcomingConcatAdapter(MovieAdapter(result.data.first.results,
+                                this@MovieFragment)))
+                        addAdapter(0,
+                            TopRatedConcatAdapter(MovieAdapter(result.data.second.results,
+                                this@MovieFragment)))
+                        addAdapter(0,
+                            PopularConcatAdapter(MovieAdapter(result.data.third.results,
+                                this@MovieFragment)))
+                    }
+
+                    binding.rvMovies.adapter = concatAdapter
 
                 }
                 is Resource.Failure -> {
@@ -64,5 +90,24 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
                 }
             }
         })
+    }
+
+    override fun onMovieClick(movie: Movie) {
+        //Ahorra cargamos los datos y los enviamos al fragmento de movie details
+
+        val action = MovieFragmentDirections.actionMovieFragmentToMovieDetailFragment(
+            movie.poster_path,
+            movie.backdrop_path,
+            movie.vote_average.toFloat(),
+            movie.vote_count,
+            movie.overview,
+            movie.title,
+            movie.original_language,
+            movie.release_date
+        )
+
+        findNavController().navigate(action)
+
+        Log.d("Movie","OnMovieClick: $movie")
     }
 }
