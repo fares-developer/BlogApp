@@ -41,3 +41,12 @@ en responder, la función se pone en suspensión hasta que responda el servidor,
 se reanuda y concluye.
 
 Más información en https://developer.android.com/kotlin/coroutines?hl=es&gclid=CjwKCAjwgr6TBhAGEiwA3aVuIXnlDkrAGC2jSgxAF4bz8fAclO4O1rd-U-JVgn55bjwurhP-gY6eRhoCDb0QAvD_BwE&gclsrc=aw.ds
+
+
+
+CONCATADAPTER
+Es una librería de recyclerview que nos permite escribir un adaptador para cada sección
+del código, en este caso crearemos adaptadores para upcoming-movies top-rated y popular
+
+Utilizaremos una librería llamada glide para mostrar las imágenes que nos vienen de internet
+'com.github.bumptech.glide:glide:4.11.0', annotatonProcessor 'com.github.bumptech.glide:compiler:4.11.0'
