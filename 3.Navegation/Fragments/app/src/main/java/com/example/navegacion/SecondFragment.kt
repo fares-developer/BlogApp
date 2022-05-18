@@ -5,12 +5,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
-import com.example.navegacion.databinding.FragmentSecondBinding
+import androidx.navigation.fragment.findNavController
 
 class SecondFragment : Fragment(R.layout.fragment_second) {
 
@@ -26,6 +25,10 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
             text.text = "${user.name} ${user.age}"
 
         })
+
+        //Le devolvemos información al fragmento que habrió el actual
+        //Es importante destacar que el tipo que devolvemos tiene que ser Parcelize
+        findNavController().previousBackStackEntry?.savedStateHandle?.set("key",User("Lety",14))
 
         button.setOnClickListener {
             val result = "Resultado"

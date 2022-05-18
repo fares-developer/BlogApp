@@ -1,8 +1,11 @@
 package com.example.navegacion
 
+import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.versionedparcelable.VersionedParcelize
+import kotlinx.android.parcel.Parcelize
 
 class MainViewModel:ViewModel() {
 
@@ -15,4 +18,6 @@ class MainViewModel:ViewModel() {
     }
 }
 
-data class User(val name:String, val age:Int)
+//Para que aparezca esta anotacion debe ir a gradle app y añadir id 'kotlin-android-extensions' en plugins
+@Parcelize
+data class User(val name:String, val age:Int):Parcelable
