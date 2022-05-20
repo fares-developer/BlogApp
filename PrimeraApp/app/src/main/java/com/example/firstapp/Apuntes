@@ -59,6 +59,14 @@ en la app desde ROOM y no directamente desde internet, si se pierde la conexión
 de la última petición.
 
 Para trabajar con Room necesitamos lo siguiente:
--La entidad/entidades: Las tablas y sus columnas
--El DAO(Data Access Object): Es el encargado de las modificaciones en la tabla,DML y SELECT
--El Room Database con una AppDataBase
+
+-La entidad/entidades: Las tablas y sus columnas las cuales serán data class con @Entity en la
+declaración de la clase, @PrimaryKey en la clave primaria y @ColumnInfo en las columnas o registros
+
+-El DAO(Data Access Object): Es el encargado de las modificaciones en la tabla,DML y SELECT. Cuando
+insertamos los datos pueden duplicarse para evitarlo utilizamos el onConflict para remplazar los datos
+
+-El Room Database: Debemos declarar esta AppDatabase abstracta para poder acceder
+a los métodos abstractos, entre los cuales tendremos nuestro DAO. El Room Database va con un
+@Database en la declaración de la clase, a dicha declaración le pasamos un array de entidades y la
+versión de la base de datos.
