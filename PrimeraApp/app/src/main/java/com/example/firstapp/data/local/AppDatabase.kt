@@ -18,13 +18,11 @@ abstract class AppDatabase : RoomDatabase() {
 
         //Esta función es para obtener la instancia de la base de datos si existe , si no existe la creamos
         fun getDatabase(context: Context): AppDatabase {
-            INSTANCE?.let {
-                Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "movie_table"
-                ).build()
-            }
+            INSTANCE = INSTANCE ?: Room.databaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java,
+                "movie_table"
+            ).build()
             return INSTANCE!!
         }
 
