@@ -10,6 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.example.firstapp.R
 import com.example.firstapp.core.Resource
+import com.example.firstapp.data.local.AppDatabase
+import com.example.firstapp.data.local.LocalMovieDataSource
 import com.example.firstapp.data.model.Movie
 import com.example.firstapp.data.remote.RemoteMovieDataSource
 import com.example.firstapp.databinding.FragmentMovieBinding
@@ -42,7 +44,10 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
 
     //A continuación procedemos con la inyección de dependencias manual
     private val viewModel by viewModels<MovieViewModel> {
-        MovieViewModelFactory(MovieRepositoryImpl(RemoteMovieDataSource(RetrofitClient.webservice)))
+        MovieViewModelFactory(MovieRepositoryImpl(
+            RemoteMovieDataSource(RetrofitClient.webservice),
+            LocalMovieDataSource(AppDatabase.getDatabase(requireContext()).movieDato())
+        ))
     }
 
     private lateinit var concatAdapter: ConcatAdapter
