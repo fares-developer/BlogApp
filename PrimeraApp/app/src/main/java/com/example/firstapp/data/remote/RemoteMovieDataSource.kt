@@ -5,7 +5,7 @@ import com.example.firstapp.data.model.MovieList
 import com.example.firstapp.repository_domain.WebService
 
 //En esta clase incluiremos código que haga llamadas al servidor para traer la info
-class MovieDataSource(private val webservice:WebService) {
+class RemoteMovieDataSource(private val webservice:WebService) {
 
     suspend fun getUpcomingMovies(): MovieList = webservice.getUpcomingMovies(AppConstants.API_KEY)
 

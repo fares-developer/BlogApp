@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.example.firstapp.R
 import com.example.firstapp.core.Resource
 import com.example.firstapp.data.model.Movie
-import com.example.firstapp.data.remote.MovieDataSource
+import com.example.firstapp.data.remote.RemoteMovieDataSource
 import com.example.firstapp.databinding.FragmentMovieBinding
 import com.example.firstapp.presentation.MovieViewModel
 import com.example.firstapp.presentation.MovieViewModelFactory
@@ -42,7 +42,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
 
     //A continuación procedemos con la inyección de dependencias manual
     private val viewModel by viewModels<MovieViewModel> {
-        MovieViewModelFactory(MovieRepositoryImpl(MovieDataSource(RetrofitClient.webservice)))
+        MovieViewModelFactory(MovieRepositoryImpl(RemoteMovieDataSource(RetrofitClient.webservice)))
     }
 
     private lateinit var concatAdapter: ConcatAdapter
