@@ -35,6 +35,7 @@ android {
     buildFeatures {
         viewBinding true //Esto nos genera una clase binding para cada uno de nuestros layouts
     }
+    namespace 'com.example.firstapp'
 }
 
 dependencies {

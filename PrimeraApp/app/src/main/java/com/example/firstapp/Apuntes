@@ -7,7 +7,7 @@ Utilizaremos generalmente la conocida como MVVM:
                         #################################
                                ACTIVITY/FRAGMENT        --> Lo que el usuario ve
                         #################################
-                             VIEWMODEL (LIVE DATA)      --> Lo se necesita para ver los fragments/activities
+                             VIEWMODEL (LIVE DATA)      --> Lo que se necesita para ver los fragments/activities
                         #################################
                                 @REPOSITORY@ (Se encarga de buscar la info que necesitamos para la app por diferentes vías
                                      / \
@@ -50,3 +50,15 @@ del código, en este caso crearemos adaptadores para upcoming-movies top-rated y
 
 Utilizaremos una librería llamada glide para mostrar las imágenes que nos vienen de internet
 'com.github.bumptech.glide:glide:4.11.0', annotatonProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+
+ROOM
+Lo utilizamos para acceder localmente a nuestros datos. En este proyecto haremos una petición al servidor,
+insertamos esos datos en una base de datos y a partir de ahí empezamos a solicitar los datos que mostramos
+en la app desde ROOM y no directamente desde internet, si se pierde la conexión se mostrarán los datos
+de la última petición.
+
+Para trabajar con Room necesitamos lo siguiente:
+-La entidad/entidades: Las tablas y sus columnas
+-El DAO(Data Access Object): Es el encargado de las modificaciones en la tabla,DML y SELECT
+-El Room Database con una AppDataBase
