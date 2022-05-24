@@ -4,6 +4,8 @@
     package="com.example.testfirebase">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Para poder utilizar la camara-->
+    <uses-feature android:name="android.hardware.camera" android:required="true"/>
 
     <application
         android:allowBackup="true"
