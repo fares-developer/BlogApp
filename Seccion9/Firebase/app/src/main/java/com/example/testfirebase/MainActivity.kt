@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         var storage = FirebaseStorage.getInstance().reference
         //Creamos la referencia a Storage en Firebase
-        val imageRef = storage.child("imagen.jpg")
+        val imageRef = storage.child("fotos/${UUID.randomUUID()}.jpg")
 
         //Ahorra tenermos que comprimir la imagen y convertirlo a una secuencia de bytes
         val baos = ByteArrayOutputStream()//Creamos un flujo de salida de bytes
@@ -73,8 +74,17 @@ class MainActivity : AppCompatActivity() {
             imageRef.downloadUrl
         }.addOnCompleteListener {
             if (it.isSuccessful) {
-                Log.d("Storage","uploadPictureUrl: ${it.result.toString()}")
+                val downloadUrl = it.result.toString()
+                //Añadimos una foto al Firestore
+                FirebaseFirestore.getInstance()
+                    .collection("ciudades")
+                    .document("Palma").update(mapOf("imageUrl" to downloadUrl))
+
+
+                Log.d("Storage","uploadPictureUrl: $downloadUrl")
             }
         }
     }
 }
+
+data class Ciudad(val population: Int = 0, val clima:String="",val continente:String,val imageUrl:String="")
