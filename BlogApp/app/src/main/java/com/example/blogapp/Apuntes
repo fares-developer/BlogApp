@@ -1,0 +1,5 @@
+A continuación se detalla paso a paso la creación de la aplicación:
+
+1. Creamos la arquitectura de la app, las carpetas data, ui, domain, core y presentation.
+2. Creamos la carpeta de navegación en res.
+3. En el main_activity creamos fragment_container_view, con el nav_host_fragment y el resto de propiedades.
