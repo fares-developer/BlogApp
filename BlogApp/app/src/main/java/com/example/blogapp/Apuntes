@@ -41,3 +41,9 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 13. Establecemos el adaptador en el fragment HomeScreen
 
+14. Creamos una interfaz en el paquete domain de nombre HomeScreenRepo
+    -Creamos un método llamado getLatestPost encargado de la llamada al servidor
+
+15. Creamos un sealed class en el paquete core llamado Resource
+
+16.
