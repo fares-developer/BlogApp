@@ -10,4 +10,21 @@ A continuación se detalla paso a paso la creación de la aplicación:
     -Creamos un paquete llamado model dentro del paquete data
     -Creamos un data class llamado post que contendrá la información de cada uno de los post
 
-5.
+5. Añadimos viewBinding al gradle.
+
+6. Creamos una paquete llamado home en ui, es donde almacenaremos el homeScreenFragment
+    -Creamos el homeScreenFragment eliminando la plantilla y pasando directament el layout en el constructor
+    -Añadimos el onViewCreated al fragment.
+
+7. Abrimos el layout del fragment
+    -Cambiamos el FragmeLayout por un LinearLayout
+    -Añadimos un RecyclerView
+
+8. Creamos un Layout para cada item de post
+    -Creamos un fichero llamado post_item_view
+    -Cambiamos constraintLayout por LinearLayout
+    -Creamos otros linearLayout para la cabecera del perfil, nombre, y la fecha de subida
+    -Añadimos el circleImageView del profile_name
+    -Añadimos el TextView del profile_name
+    -Añadimos el TextView de la hora de subida
+    -Añadimos el ImageView del post
