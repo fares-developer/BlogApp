@@ -1,5 +1,13 @@
 A continuación se detalla paso a paso la creación de la aplicación:
 
 1. Creamos la arquitectura de la app, las carpetas data, ui, domain, core y presentation.
+
 2. Creamos la carpeta de navegación en res.
+
 3. En el main_activity creamos fragment_container_view, con el nav_host_fragment y el resto de propiedades.
+
+4. Creamos el modelo de la app:
+    -Creamos un paquete llamado model dentro del paquete data
+    -Creamos un data class llamado post que contendrá la información de cada uno de los post
+
+5.
