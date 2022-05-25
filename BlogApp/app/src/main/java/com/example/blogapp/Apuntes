@@ -23,7 +23,7 @@ A continuación se detalla paso a paso la creación de la aplicación:
 8. Creamos un Layout para cada item de post
     -Creamos un fichero llamado post_item_view
     -Cambiamos constraintLayout por LinearLayout
-    -Creamos otros linearLayout para la cabecera del perfil, nombre, y la fecha de subida
+    -Creamos otro linearLayout para la cabecera del perfil, nombre, y la fecha de subida
     -Añadimos el circleImageView del profile_name
     -Añadimos el TextView del profile_name
     -Añadimos el TextView de la hora de subida
@@ -37,4 +37,7 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 11. Le pasamos el BaseViewHolder al HomeScreenAdapter e implementamos los métodos de la interfaz
 
-12. Creamos la clase interna viewHolder de nombre HomeScreenViewHolder que va a poner los datos
+12. Creamos la clase interna viewHolder de nombre HomeScreenViewHolder que va a poner los datos.
+
+13. Establecemos el adaptador en el fragment HomeScreen
+
