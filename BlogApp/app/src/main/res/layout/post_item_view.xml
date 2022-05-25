@@ -28,6 +28,7 @@
             tools:text="Fares Endong" />
 
         <TextView
+            android:id="@+id/post_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Hace 2 Horas"/>

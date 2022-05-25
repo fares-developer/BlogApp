@@ -28,3 +28,13 @@ A continuación se detalla paso a paso la creación de la aplicación:
     -Añadimos el TextView del profile_name
     -Añadimos el TextView de la hora de subida
     -Añadimos el ImageView del post
+
+9. Creamos un adapter para recyclerView
+    -Creamos un nuevo paquete en ui/home de nombre adapter
+    -Creamos el HomeScreenAdapter
+
+10. Creamos un BaseViewHolder dentro del paquete core
+
+11. Le pasamos el BaseViewHolder al HomeScreenAdapter e implementamos los métodos de la interfaz
+
+12. Creamos la clase interna viewHolder de nombre HomeScreenViewHolder que va a poner los datos
