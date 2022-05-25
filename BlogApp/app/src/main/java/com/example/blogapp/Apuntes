@@ -54,4 +54,12 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 18. Implementamos getLatestPosts de HomeScreenDataSource para hacer la llamada a firebase
 
+19. Creamos la clase HomeScreenViewModel en el paquete de presentation
+
+20. Creamos el HomeScreenViewModelFactory
+
+21. En el HomeScreenFragment Creamos un viewModel delegando viewModels y pasando el factory
+
+22. Creamos un progress_bar en el home_fragment
+
 
