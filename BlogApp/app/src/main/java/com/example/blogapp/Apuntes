@@ -46,4 +46,12 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 15. Creamos un sealed class en el paquete core llamado Resource
 
-16.
+16. Creamos nuestro un nuevo paquete llamado remote que contendrá nuestro dataSource
+    -Creamos nuesgtra clase HomeScreenDataSource
+    -Creamos el método suspend llamado getLatestPosts igual que en HomeScreenRepo
+
+17. Creamos las las colecciones y documents en firestore
+
+18. Implementamos getLatestPosts de HomeScreenDataSource para hacer la llamada a firebase
+
+
