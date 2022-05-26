@@ -11,8 +11,8 @@ import com.example.blogapp.core.Resource
 import com.example.blogapp.data.remote.home.HomeScreenDataSource
 import com.example.blogapp.databinding.FragmentHomeScreenBinding
 import com.example.blogapp.domain.home.HomeScreenRepoImp
-import com.example.blogapp.presentation.HomeScreenViewModel
-import com.example.blogapp.presentation.HomeScreenViewModelFactory
+import com.example.blogapp.presentation.home.HomeScreenViewModel
+import com.example.blogapp.presentation.home.HomeScreenViewModelFactory
 import com.example.blogapp.ui.home.adapter.HomeScreenAdapter
 
 class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
@@ -31,7 +31,6 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
                 is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(requireContext(),"Listo!!!!!!",Toast.LENGTH_SHORT).show()
                     binding.rvHome.adapter = HomeScreenAdapter(it.data)
                 }
                 is Resource.Failure -> {

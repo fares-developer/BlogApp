@@ -5,8 +5,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center"
     tools:context=".ui.auth.LoginFragment">
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_marginVertical="24dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blog App"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:textStyle="bold"
+        android:textSize="24sp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -52,6 +66,7 @@
         android:text="Not have an account? Sign Up"/>
 
     <ProgressBar
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"/>
