@@ -93,4 +93,10 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 35. Creamos un método en LoginFragment que cuando pulsamos el texto de registrarse nos lleve a ello
 
+36. Creamos un paquete de animaciones en res y añadimos los ficheros de animación
+
+37. Añadimos el ojo de ver y ocultar contraseña
+
+38. Creamos un método llamado signUp en RegisterFragment
+
 
