@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import com.example.blogapp.core.Resource
-import com.example.blogapp.domain.HomeScreenRepo
+import com.example.blogapp.domain.home.HomeScreenRepo
 import kotlinx.coroutines.Dispatchers
 
 //Esta clase es la que va a conectar la info del repositorio con la UI
