@@ -33,6 +33,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding = FragmentLoginBinding.bind(view)
         isUserLoggedIn()
         doLogin()
+        goToSignUpPage()
+    }
+
+    private fun goToSignUpPage() {
+        binding.txtSignup.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
     }
 
     private fun isUserLoggedIn() {
@@ -45,8 +52,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.btnSignin.setOnClickListener {
             val email = binding.editTextEmail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
-            validateCredentials(email,password)
-            signIn(email,password)
+            validateCredentials(email, password)
+            signIn(email, password)
 
         }
     }
@@ -64,8 +71,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun signIn(email: String, password: String) {
-        viewModel.sign(email,password).observe(viewLifecycleOwner, Observer {
-            when(it){
+        viewModel.sign(email, password).observe(viewLifecycleOwner, Observer {
+            when (it) {
                 is Resource.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.btnSignin.isEnabled = false
@@ -79,7 +86,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 is Resource.Failure -> {
                     binding.progressBar.visibility = View.GONE
                     binding.btnSignin.isEnabled = true
-                    Snackbar.make(requireView(),"Error: ${it.exeption}",Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(requireView(), "Error: ${it.exeption}", Snackbar.LENGTH_SHORT)
+                        .show()
                 }
             }
         })

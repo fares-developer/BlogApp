@@ -87,6 +87,10 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 33. Creamos un LoginScreenViewModel y Factory
 
-34.
+34. Creamos un FragmentRegister
+    -Lo añadimos al main_graph
+    -Hacemos los cambios necesarios en el layout de register
+
+35. Creamos un método en LoginFragment que cuando pulsamos el texto de registrarse nos lleve a ello
 
 
