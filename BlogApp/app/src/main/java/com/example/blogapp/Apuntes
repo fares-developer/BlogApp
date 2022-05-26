@@ -62,4 +62,13 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 22. Creamos un progress_bar en el home_fragment
 
+23. Importamos las librerías de firebase auth
+
+24. En el paquete ui creamos un nuevo paquete llamado auth que va contener la interfaz de autenticación
+    -Creamos un fragment llamado loginFragment
+
+25. Modificamos el fragment_login layout añadiendo usuario contraseña y otros.
+
+
+
 
