@@ -1,4 +1,4 @@
-package com.example.blogapp.presentation
+package com.example.blogapp.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
