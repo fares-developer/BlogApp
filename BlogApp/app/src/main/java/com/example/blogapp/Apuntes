@@ -69,6 +69,12 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 25. Modificamos el fragment_login layout añadiendo usuario contraseña y otros.
 
+26. Añadimos el login_fragment al main_graph y lo establecemos como inicio de navegación
+
+27. Creamos una instancia de FirebaseAuth en el LoginFragment y lo delegamos a by lazy
+
+28. Creamos los métodos necesarios para validar usuario y password, logearse y otros.
+
 
 
 
