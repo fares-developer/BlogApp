@@ -1,6 +1,6 @@
 package com.example.blogapp.data.remote.home
 
-import com.example.blogapp.core.Resource
+import com.example.blogapp.core.Result
 import com.example.blogapp.data.model.Post
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
@@ -8,7 +8,7 @@ import kotlinx.coroutines.tasks.await
 //En esta clase estará el método que irá a buscar la info a Firebase
 class HomeScreenDataSource {
 
-    suspend fun getLatestPosts():Resource<List<Post>>{
+    suspend fun getLatestPosts(): Result<List<Post>> {
         val postList = mutableListOf<Post>()
         val querySnapshot = FirebaseFirestore.getInstance().collection("post").get().await()
 
@@ -17,6 +17,6 @@ class HomeScreenDataSource {
             post.toObject(Post::class.java)?.let { postList.add(it) }
         }
 
-        return Resource.Success(postList)
+        return Result.Success(postList)
     }
 }

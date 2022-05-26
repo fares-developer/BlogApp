@@ -98,5 +98,15 @@ A continuación se detalla paso a paso la creación de la aplicación:
 37. Añadimos el ojo de ver y ocultar contraseña
 
 38. Creamos un método llamado signUp en RegisterFragment
+    -Creamos las validaciones necesarias
+
+39. Renombramos la clase Resource a Result
+
+40. Renombramos LoginScreenFragmentViewModel a AuthViewModel para no tener que crear tantas clases
+    -En resumen renombramos to-do lo que tenga que ver con la autenticación.
+    -Creamos el método signUp en la interfaz Repo y en la clase RepoImp
+
+41. Creamos un data class dentro de model llamado User
+
 
 
