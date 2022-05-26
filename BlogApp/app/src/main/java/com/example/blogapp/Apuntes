@@ -75,6 +75,7 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 28. Creamos los métodos necesarios para validar usuario y password, logearse y otros.
 
+<<<<<<< HEAD
 29. Creamos una carpeta home en domain e introducimos la interfaz y la clase repo en él
 
 30. Creamos un paquete auth en domain
@@ -84,5 +85,8 @@ A continuación se detalla paso a paso la creación de la aplicación:
 31. Creamos un paquete home en remote
 
 32. Creamos un paquete login en remote que va a contener el dataSource de LoginRepoImp
+=======
+
+>>>>>>> ff0bc0a5204fefd88239da098e063611991c710c
 
 
