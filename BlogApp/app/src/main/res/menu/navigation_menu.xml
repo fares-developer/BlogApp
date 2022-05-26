@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--Es muy importante que el id del item sea igual al del
+        fragmento que representa-->
+    <item
+        android:id="@+id/homeScreenFragment"
+        android:title="Home"
+        android:icon="@drawable/ic_round_home_24"/>
+
+    <item
+        android:id="@+id/cameraFragment"
+        android:title="Take Photo"
+        android:icon="@drawable/ic_round_add_a_photo_24"/>
+
+    <item
+        android:id="@+id/profileFragment"
+        android:title="Profile"
+        android:icon="@drawable/ic_round_person_24"/>
+</menu>

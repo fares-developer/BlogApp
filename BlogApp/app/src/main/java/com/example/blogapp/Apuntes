@@ -108,5 +108,16 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 41. Creamos un data class dentro de model llamado User
 
+42. Añadimos un bottomNavigationView en activity_main
+
+43. Creamos un paquete menu para la lista de iconos del menu
+
+44. Creamos un fichero navigation_menu
+
+45. Importamos los iconos de navegación
+
+46. Creamos los respectivos fragments a los que navegaremos
+
+47.
 
 
