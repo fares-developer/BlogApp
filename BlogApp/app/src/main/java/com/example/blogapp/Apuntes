@@ -118,6 +118,8 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 46. Creamos los respectivos fragments a los que navegaremos
 
-47.
+47. Controlamos que bottomNavView se oculta en los fragmentos de login y registro
+
+48.
 
 

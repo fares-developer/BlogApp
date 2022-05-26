@@ -8,6 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.blogapp.R
 import com.example.blogapp.core.Result
+import com.example.blogapp.core.hide
+import com.example.blogapp.core.show
 import com.example.blogapp.data.remote.auth.AuthDataSource
 import com.example.blogapp.databinding.FragmentLoginBinding
 import com.example.blogapp.domain.auth.AuthRepoImp
@@ -74,17 +76,17 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         viewModel.signIn(email, password).observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Result.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.show()
                     binding.btnSignin.isEnabled = false
                 }
 
                 is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.hide()
                     findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment)
                 }
 
                 is Result.Failure -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.hide()
                     binding.btnSignin.isEnabled = true
                     Snackbar.make(requireView(), "Error: ${it.exeption}", Snackbar.LENGTH_SHORT)
                         .show()
