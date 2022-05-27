@@ -154,4 +154,8 @@ en el que pediremos al asuario nombre de perfil y foto
 
 62. Creamos en remote el paquete camera y su respectiva clase DataSource
 
+63. Repetimos muchos de los procesos anteriores en otros fragment
+    -Creamos el factory del viewModel, usamos el viewModels de otros fragmentos,
+    hacemos la inyección de dependencias
+
 
