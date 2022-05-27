@@ -120,6 +120,6 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 47. Controlamos que bottomNavView se oculta en los fragmentos de login y registro
 
-48.
+48. Controlamos que se muestre o no la descripción en determinados casos
 
 
