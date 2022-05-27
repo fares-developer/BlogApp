@@ -7,5 +7,6 @@ data class Post(
     val profile_name: String = "",
     val post_timestamp: Timestamp? = null,//Por ejemplo hace 2 horas
     val post_image: String = "",//Imagen que mostraremos al usuario
-    val post_description: String = ""
+    val post_description: String = "",
+    val uid:String=""
 )
