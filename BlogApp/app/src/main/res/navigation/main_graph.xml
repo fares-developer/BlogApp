@@ -27,7 +27,8 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_loginFragment_to_setupProfileFragment"
-            app:destination="@id/setupProfileFragment" />
+            app:destination="@id/setupProfileFragment"
+            app:popUpTo="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"

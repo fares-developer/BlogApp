@@ -20,10 +20,9 @@ fun View.show() {
 //Esta función se encarga de trabajar con el intent que lanza la cámara
 fun ActivityResultLauncher<Intent>.launchCamera(
     takePictureIntent: Intent,
-    response:ActivityResultLauncher<Intent>,
     requiredView:View) {
     try {
-        response.launch(takePictureIntent)
+        this.launch(takePictureIntent)
 
     } catch (e: ActivityNotFoundException) {
         Snackbar.make(

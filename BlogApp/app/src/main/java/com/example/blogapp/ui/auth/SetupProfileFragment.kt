@@ -47,7 +47,7 @@ class SetupProfileFragment : Fragment(R.layout.fragment_setup_profile) {
 
         binding.profileImage.setOnClickListener {
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            response.launchCamera(takePictureIntent, this.response, requireView())
+            response.launchCamera(takePictureIntent,requireView())
         }
 
         binding.btnCreateProfile.setOnClickListener {
@@ -77,6 +77,5 @@ class SetupProfileFragment : Fragment(R.layout.fragment_setup_profile) {
             }
         }
 
-        //viewModel.updateUserProfile()
     }
 }
