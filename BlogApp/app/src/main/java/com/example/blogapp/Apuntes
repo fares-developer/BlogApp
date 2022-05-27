@@ -136,6 +136,10 @@ en el que pediremos al asuario nombre de perfil y foto
 
 54. En el oviewCreated del CameraFragment añadimos las funcionalidades necesarias para hacer una foto
 
-55.
+55. Modificamos el RegisterFragment para que el en lugar de ir HomeFragment vaya al SetupProfileFragment
+
+56. Añadimos la funcionalidad de hacer fotos en SetupProfileFragment
+
+57. Implementamos el updateProfile en AuthDataSource
 
 

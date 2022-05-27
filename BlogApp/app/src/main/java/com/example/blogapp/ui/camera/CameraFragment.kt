@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.fragment.app.Fragment
 import com.example.blogapp.R
 import com.example.blogapp.core.hide
+import com.example.blogapp.core.launchCamera
 import com.example.blogapp.core.show
 import com.example.blogapp.databinding.FragmentCameraBinding
 import com.google.android.material.snackbar.Snackbar
@@ -39,15 +40,7 @@ class CameraFragment : Fragment() {
         binding.root.hide()//Ocultamos el layout mientras iniciamos la cámara
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
-        try {
-            response.launch(takePictureIntent)
-        } catch (e: ActivityNotFoundException) {
-            Snackbar.make(
-                requireView(),
-                "No se encontro ninguna app de camara",
-                Snackbar.LENGTH_SHORT
-            ).show()
-        }
+        response.launchCamera(takePictureIntent,this.response,requireView())
         return binding.root
     }
 

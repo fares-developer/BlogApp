@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.loginFragment -> binding.bottomNavigationView.hide()
                 R.id.registerFragment -> binding.bottomNavigationView.hide()
+                R.id.profileFragment -> binding.bottomNavigationView.hide()
                 else -> binding.bottomNavigationView.show()
             }
         }
