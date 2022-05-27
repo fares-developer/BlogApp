@@ -31,5 +31,6 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
         binding = FragmentCameraBinding.bind(view)
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         response.launchCamera(takePictureIntent, requireView())
+        binding.postImage.setOnClickListener { response.launchCamera(takePictureIntent,requireView()) }
     }
 }

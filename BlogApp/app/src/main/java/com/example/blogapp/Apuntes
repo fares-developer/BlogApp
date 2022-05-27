@@ -144,4 +144,14 @@ en el que pediremos al asuario nombre de perfil y foto
 
 58. Trabajamos el CameraFragment
 
+59. Creamos un nuevo paquete en presentation llamado camera donde almacenaremos su viewModel
+
+60. Creamos una clase CameraViewModel
+
+61. Creamos un paquete camera en domaim
+    -Creamos una interfaz de nombre CameraRepo que contendrá el método uploadPhoto
+    -Creamos la clase CameraRepoImp para implementar la interfaz
+
+62. Creamos en remote el paquete camera y su respectiva clase DataSource
+
 
