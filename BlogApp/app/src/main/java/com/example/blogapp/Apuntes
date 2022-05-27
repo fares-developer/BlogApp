@@ -122,4 +122,18 @@ A continuación se detalla paso a paso la creación de la aplicación:
 
 48. Controlamos que se muestre o no la descripción en determinados casos
 
+49. Creamos un nuevo fragment en ui/auth llamado SetupProfileFragment
+en el que pediremos al asuario nombre de perfil y foto
+
+50. Hacemos los cambios necesarios en el layout de SetupProfileFragment
+
+51. En el AuthViewModel vamos a crear un método llamado updateUserProfile
+
+52. En la clase AuthRepo creamos un método llamado updateProfile
+    -Tambien lo creamos en el AuthRepoImp y en el AuthDataSource
+
+53. Añadimos el fragment al main_graph
+
+54.
+
 

@@ -1,5 +1,6 @@
 package com.example.blogapp.data.remote.auth
 
+import android.graphics.Bitmap
 import com.example.blogapp.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -24,5 +25,9 @@ class AuthDataSource {
                 .document(it).set(User(email,username,"Phot_Url.png")).await()
         }
         return authResutl.user
+    }
+
+    suspend fun updataUserProfile(imageBitmap:Bitmap, username: String){
+
     }
 }
