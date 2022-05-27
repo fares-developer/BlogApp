@@ -134,6 +134,8 @@ en el que pediremos al asuario nombre de perfil y foto
 
 53. Añadimos el fragment al main_graph
 
-54.
+54. En el oviewCreated del CameraFragment añadimos las funcionalidades necesarias para hacer una foto
+
+55.
 
 
