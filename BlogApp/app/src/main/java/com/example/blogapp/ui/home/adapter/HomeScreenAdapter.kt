@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.blogapp.core.BaseViewHolder
+import com.example.blogapp.core.TimeUtils
 import com.example.blogapp.core.hide
 import com.example.blogapp.data.model.Post
 import com.example.blogapp.databinding.PostItemViewBinding
@@ -44,7 +45,11 @@ class HomeScreenAdapter(private val postList: List<Post>) :
                 binding.postDescription.text = item.post_description
             }
 
-            binding.postTimestamp.text = "Hace ${(0..24).random()} Horas"
+            //Obtenemos el tiempo del servidor y lo transformamos
+            val createAt = (item.create_at?.time?.div(1000L))?.let{
+                TimeUtils.getTimeAgo(it.toInt())
+            }
+            binding.postTimestamp.text = createAt
         }
     }
 }

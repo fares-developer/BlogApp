@@ -160,4 +160,9 @@ en el que pediremos al asuario nombre de perfil y foto
 
 64. Importamos un vector drawable para que nos muestre un icono de error cuando no existe ningún post
 
+65. Cambiamos el nombre de la variable post_timestamp a create_at y la marcamos como @ServerTimeStamp
+
+66. Creamos un object TimeAgo en core el cual se encargará de trabajar el tiempo del servidor
+ para nosotros y nos dice cuánto tiempo hace que hemos subido la foto
+
 
