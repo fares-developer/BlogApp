@@ -182,4 +182,11 @@ Hay tres entidades involucradas en transmisiones de datos:
 
     -Un consumidor consume los valores del flujo. En este proyecto será el HomeFragment
 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+68. Nos encargamos de modificar el adaptador del HomeFragment para tener más organizadas las
+distintas características y funcionalidades del post, creando métodos y otros.
+
+69.
+
 
