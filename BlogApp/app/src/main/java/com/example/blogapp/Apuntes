@@ -187,6 +187,8 @@ Hay tres entidades involucradas en transmisiones de datos:
 68. Nos encargamos de modificar el adaptador del HomeFragment para tener más organizadas las
 distintas características y funcionalidades del post, creando métodos y otros.
 
-69.
+69. Importamos los vectores del like
+
+70. Creamos un data class en Post llamada Poster(persona que crea el poster)
 
 
