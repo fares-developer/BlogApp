@@ -30,9 +30,9 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
         binding = FragmentHomeScreenBinding.bind(view)
         viewModel.fetchLatestPost().observe(viewLifecycleOwner, Observer {
             when (it) {
-                is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
+                is Result.Loading -> binding.progressBar.show()
                 is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.hide()
                     if (it.data.isEmpty()) {
                         binding.emptyContainer.show()
                         return@Observer //Esto evita que continue en la siguiente línea de código
@@ -42,7 +42,7 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
                     binding.rvHome.adapter = HomeScreenAdapter(it.data)
                 }
                 is Result.Failure -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.hide()
                     Toast.makeText(
                         requireContext(),
                         "Se ha producido un error ${it.exeption}", Toast.LENGTH_SHORT

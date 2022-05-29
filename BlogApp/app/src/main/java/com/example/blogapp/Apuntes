@@ -168,4 +168,18 @@ en el que pediremos al asuario nombre de perfil y foto
 67. Tenemos que ordenar los post por fecha de creación, los más recomendable es hacerlo desde el
 servidor y para ello cuando traemos los post hacemos un orderBy
 
+<<<<<<<<<<<<<<<<<< Flows in Kotlin >>>>>>>>>>>>>>>>>>
+En materia de corrutinas, un flujo es un tipo que puede emitir varios valores de manera secuencial,
+en lugar de suspender funciones que muestran solo un valor único. Un flujo se puede usar,
+por ejemplo, para recibir actualizaciones en vivo de una base de datos.
+
+Hay tres entidades involucradas en transmisiones de datos:
+    - Un productor produce datos que se agregan al flujo. Gracias a las corrutinas,
+      los flujos también pueden producir datos de forma asíncrona.En este proyecto será el HomeDataSource
+
+    - Los intermediarios (opcional) pueden modificar cada valor emitido en el flujo,
+      o bien el flujo mismo. En este proyecto será el viewModel
+
+    -Un consumidor consume los valores del flujo. En este proyecto será el HomeFragment
+
 
