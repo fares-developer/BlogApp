@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.blogapp.R
 import com.example.blogapp.core.Result
@@ -80,7 +79,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun signIn(email: String, password: String) {
-        viewModel.signIn(email, password).observe(viewLifecycleOwner, Observer {
+        viewModel.signIn(email, password).observe(viewLifecycleOwner) {
             when (it) {
                 is Result.Loading -> {
                     binding.progressBar.show()
@@ -103,7 +102,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         .show()
                 }
             }
-        })
+        }
     }
 
 }

@@ -26,7 +26,7 @@ class SetupProfileFragment : Fragment(R.layout.fragment_setup_profile) {
     private lateinit var binding: FragmentSetupProfileBinding
     private var bitmap: Bitmap? = null
 
-    val response = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    private val response = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
             val imageBitmap = it.data?.extras?.get("data") as Bitmap
             binding.root.show()//Volvemos a mostrar el layout después de tomar la foto
@@ -56,10 +56,10 @@ class SetupProfileFragment : Fragment(R.layout.fragment_setup_profile) {
             val alertDialog =
                 AlertDialog.Builder(requireContext()).setTitle("Uploading Photo....").create()
             //Actualizamos el perfil
-            bitmap?.let {
+            bitmap?.let {bitmap ->
                 if (username.isNotEmpty()) {
-                    viewModel.updateUserProfile(it, username)
-                        .observe(viewLifecycleOwner, {
+                    viewModel.updateUserProfile(bitmap, username)
+                        .observe(viewLifecycleOwner) {
                             when (it) {
                                 is Result.Loading -> {
                                     alertDialog.show()
@@ -72,7 +72,7 @@ class SetupProfileFragment : Fragment(R.layout.fragment_setup_profile) {
                                     alertDialog.dismiss()
                                 }
                             }
-                        })
+                        }
                 }
             }
         }

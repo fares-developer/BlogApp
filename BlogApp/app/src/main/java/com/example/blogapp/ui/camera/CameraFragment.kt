@@ -29,7 +29,7 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
     }
 
     //Este variable es para remplazar el onActivityForResult deprecado
-    val response = registerForActivityResult(StartActivityForResult()) {
+    private val response = registerForActivityResult(StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
             val imageBitmap = it.data?.extras?.get("data") as Bitmap
             binding.postImage.setImageBitmap(imageBitmap)
@@ -52,21 +52,29 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
         binding.btnUploadPhoto.setOnClickListener {
             bitmap?.let {
                 viewModel.uploadPhoto(it, binding.photoDescription.text.toString().trim())
-                    .observe(viewLifecycleOwner, { result ->
+                    .observe(viewLifecycleOwner) { result ->
                         when (result) {
                             is Result.Loading -> {
-                                Toast.makeText(requireContext(),"Uploading Photo...",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Uploading Photo...",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                             is Result.Success -> {
                                 findNavController().popBackStack()//Esto hace que navegue a la pantalla princiapal
                                 //findNavController().navigate(R.id.action_cameraFragment_to_homeScreenFragment)
                             }
                             is Result.Failure -> {
-                                Toast.makeText(requireContext(),"Error: ${result.exeption}",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Error: ${result.exeption}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
 
                         }
-                    })
+                    }
 
             }
         }

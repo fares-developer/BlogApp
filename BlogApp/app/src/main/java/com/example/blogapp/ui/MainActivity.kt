@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     //Controlamos el destino del navControler, utilizamos esto para ocultar el bottom en el login y registro
     private fun observeDestinationChange(navController: NavController) {
-        navController.addOnDestinationChangedListener { controler, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.loginFragment -> binding.bottomNavigationView.hide()
                 R.id.registerFragment -> binding.bottomNavigationView.hide()

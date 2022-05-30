@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.blogapp.R
 import com.example.blogapp.core.Result
@@ -49,8 +48,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     }
 
     private fun createUser(email: String, password: String, username: String) {
-        viewModel.signUp(email,password, username).observe(viewLifecycleOwner, Observer { result ->
-            when(result){
+        viewModel.signUp(email,password, username).observe(viewLifecycleOwner) { result ->
+            when (result) {
                 is Result.Loading -> {
                     binding.progressBar.show()
                     binding.btnSignup.isEnabled = false
@@ -68,7 +67,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                         .show()
                 }
             }
-        })
+        }
     }
 
     private fun validateUserData(
