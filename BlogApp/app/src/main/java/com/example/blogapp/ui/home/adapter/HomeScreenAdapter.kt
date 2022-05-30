@@ -3,17 +3,26 @@ package com.example.blogapp.ui.home.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.blogapp.R
 import com.example.blogapp.core.BaseViewHolder
 import com.example.blogapp.core.TimeUtils
 import com.example.blogapp.core.hide
+import com.example.blogapp.core.show
 import com.example.blogapp.data.model.Post
 import com.example.blogapp.databinding.PostItemViewBinding
 
 //Esta clase se encarga de que el recyclerView muestro los datos como le indicamos
-class HomeScreenAdapter(private val postList: List<Post>) :
+class HomeScreenAdapter(private val postList: List<Post>, onPostClickListener: OnPostClickListener) :
     RecyclerView.Adapter<BaseViewHolder<*>>() {
+
+    private var postClickListener: OnPostClickListener? = null
+
+    init {
+        postClickListener = onPostClickListener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         val itemBinding =
@@ -39,19 +48,19 @@ class HomeScreenAdapter(private val postList: List<Post>) :
             addPostTimeStamp(item)
             setupPostImage(item)
             setupPostDescription(item)
+            tintHeartIcon(item)
+            setupLikeCount(item)
+            setLikeClickAction(item)
 
         }
 
-        private fun setupPostDescription(item: Post) {//Controlamos que la descripción no esté vacía
-            if (item.post_description.isEmpty()) {
-                binding.postDescription.hide()
-            } else {
-                binding.postDescription.text = item.post_description
-            }
-        }
 
-        private fun setupPostImage(item: Post) {
-            Glide.with(context).load(item.post_image).centerCrop().into(binding.postImage)
+        //Este método lo utilizamos para crear manejar el perfil del post
+        private fun setupProfileInfo(post: Post) {
+            Glide.with(context).load(post.poster?.profile_picture).centerCrop()
+                .into(binding.profilePicture)
+            binding.profileName.text = post.poster?.username
+
         }
 
         private fun addPostTimeStamp(post: Post) {
@@ -62,12 +71,62 @@ class HomeScreenAdapter(private val postList: List<Post>) :
             binding.postTimestamp.text = createAt
         }
 
-        //Este método lo utilizamos para crear manejar el perfil del post
-        private fun setupProfileInfo(post: Post) {
-            Glide.with(context).load(post.profile_picture).centerCrop().into(binding.profilePicture)
-            binding.profileName.text = post.profile_name
+        private fun setupPostImage(item: Post) {
+            Glide.with(context).load(item.post_image).centerCrop().into(binding.postImage)
+        }
 
+
+        private fun setupPostDescription(item: Post) {//Controlamos que la descripción no esté vacía
+            if (item.post_description.isEmpty()) {
+                binding.postDescription.hide()
+            } else {
+                binding.postDescription.text = item.post_description
+            }
+        }
+
+        //Este método se encargará de pintar el icono del like
+        private fun tintHeartIcon(item: Post) {
+            if (!item.liked) {
+                binding.btnLike.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.ic_round_favorite_24
+                    )
+                )
+
+            } else {
+                binding.btnLike.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.ic_round_favorite_border_24
+                    )
+                )
+            }
+        }
+
+        private fun setupLikeCount(item: Post) {
+            if (item.likes > 0) {
+                binding.likeCount.show()
+                binding.likeCount.text = "${item.likes} likes"
+            } else {
+                binding.likeCount.hide()
+            }
+        }
+
+        //Esta función se encarga de, si el like está pintado se despinte y viceversa, luego usamos
+        // el postListener para mandar el click a nuestro fragment
+        private fun setLikeClickAction(item: Post) {
+            binding.btnLike.setOnClickListener {
+                if(item.liked) item.apply { liked = false } else item.apply { liked = true }
+                tintHeartIcon(item)
+                postClickListener?.onLikeButtonClick(item,item.liked)
+            }
         }
     }
 
+}
+
+//Esta interfaz nos ayudará a saber si se ha hecho like o no en un post
+interface OnPostClickListener{
+    fun onLikeButtonClick(post:Post,liked: Boolean)
 }

@@ -14,7 +14,7 @@ data class Post(
     val poster: Poster? ,
     val likes: Long = 0,
     @Exclude @JvmField //Esto evita que la aplicación se rompa ya que liked no existe en firebase
-    val liked: Boolean = false
+    var liked: Boolean = false
 )
 
 //Persona que sube un post

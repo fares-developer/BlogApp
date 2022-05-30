@@ -191,4 +191,8 @@ distintas características y funcionalidades del post, creando métodos y otros.
 
 70. Creamos un data class en Post llamada Poster(persona que crea el poster)
 
+71. En el HomeAdapter implementamos el método que pinta el icono del like
+    -Implementamos el método que gestione el conteo de likes
+    -
+
 
