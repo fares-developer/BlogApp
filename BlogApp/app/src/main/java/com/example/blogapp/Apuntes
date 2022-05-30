@@ -193,6 +193,10 @@ distintas características y funcionalidades del post, creando métodos y otros.
 
 71. En el HomeAdapter implementamos el método que pinta el icono del like
     -Implementamos el método que gestione el conteo de likes
-    -
+
+72. Ahorra procederemos al eliminar to-do lo concerciente a Flow para evitar que los datos estén
+    actualizandose to-do el rato en tiempo real, lo cual consume muchos recursos del server
+
+
 
 

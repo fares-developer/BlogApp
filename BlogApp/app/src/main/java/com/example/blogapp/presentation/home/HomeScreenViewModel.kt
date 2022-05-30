@@ -15,14 +15,10 @@ class HomeScreenViewModel(private val repo: HomeScreenRepo): ViewModel() {
     fun fetchLatestPost() = liveData(Dispatchers.IO){
         emit(Result.Loading())
 
-        //Esta función nos devuelve dos valores onSuccess y unFailure
         kotlin.runCatching {
             repo.getLatestPosts()
-        }.onSuccess {flowlist -> //Esto devuelve un flujo
-            //Esta función obtiene los datos del flujo
-            flowlist.collect {
-                emit(it)
-            }
+        }.onSuccess {postList ->
+            emit(postList)
         }.onFailure {
             emit(Result.Failure(Exception(it.message)))
         }
