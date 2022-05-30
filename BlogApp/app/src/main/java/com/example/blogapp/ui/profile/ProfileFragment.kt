@@ -6,7 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.blogapp.R
+import com.google.firebase.auth.FirebaseAuth
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var user = FirebaseAuth.getInstance().currentUser
+    }
 }
