@@ -11,7 +11,6 @@ import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 //En esta clase estará el método que irá a buscar la info a Firebase
 class HomeScreenDataSource {
@@ -28,12 +27,21 @@ class HomeScreenDataSource {
                 //Transformamos el snapshot post a un Post objeto y lo añadimos a la lista de Post
                 post.toObject(Post::class.java)?.let {
 
+                    val isLiked = FirebaseAuth.getInstance().currentUser?.let { safeUser ->
+                        isPostLiked(post.id, safeUser.uid)
+                    }
+
                     it.apply {
                         //Obtengo un timeStamp estimado del servidor para que se nos muestre directamente
                         // al publicar el post
                         create_at = post.getTimestamp(
                             "create_at", DocumentSnapshot.ServerTimestampBehavior.ESTIMATE
                         )?.toDate()
+                        id = post.id
+
+                        if (isLiked != null) {
+                            liked = isLiked
+                        }
                     }
                     postList.add(it)
                 }
@@ -41,6 +49,17 @@ class HomeScreenDataSource {
         }
 
         return Result.Success(postList)
+    }
+
+    //Esta función compruba si un post tiene o ha sido liked por el usuario
+    private suspend fun isPostLiked(postId: String, uid: String): Boolean {
+        val post = FirebaseFirestore.getInstance()
+            .collection("postsLikes").document(postId).get().await()
+
+        if (!post.exists()) return false
+
+        val likeArray: List<String> = post.get("likes") as List<String>
+        return likeArray.contains(uid)
     }
 
     //Función encargada de la lógica principal de los likes
@@ -76,8 +95,8 @@ class HomeScreenDataSource {
                     transaction.update(postRef, "likes", increment)
 
                 } else {
-                    transaction.update(postRef,"likes",decrement)
-                    transaction.update(postLikesRef,"likes",FieldValue.arrayRemove(uid))
+                    transaction.update(postRef, "likes", decrement)
+                    transaction.update(postLikesRef, "likes", FieldValue.arrayRemove(uid))
                 }
             }
         }.addOnFailureListener {

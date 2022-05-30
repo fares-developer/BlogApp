@@ -204,6 +204,8 @@ post y hacer esperar hasta que esto cambie.
 
 73. En el HomeScreenViewModel creamos un método llamado registerLikeButtonState, también en los paquetes correspondientes
 
-74.
+74. En HomeScreenDataSource implementamos el método isPostLiked
+
+75.
 
 

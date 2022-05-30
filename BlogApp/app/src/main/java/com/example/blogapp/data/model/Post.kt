@@ -6,7 +6,7 @@ import java.util.*
 
 data class Post(
     @Exclude @JvmField
-    val id: String = "",
+    var id: String = "",
     @ServerTimestamp //Esto hace que create_at se cree con tiempo del servidor si lo mandamos null
     var create_at: Date? = null,//Por ejemplo hace 2 horas
     val post_image: String = "",//Imagen que mostraremos al usuario
