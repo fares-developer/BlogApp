@@ -8,4 +8,7 @@ import com.example.blogapp.data.remote.home.HomeScreenDataSource
 class HomeScreenRepoImp(private val dataSource: HomeScreenDataSource): HomeScreenRepo {
 
     override suspend fun getLatestPosts(): Result<List<Post>> = dataSource.getLatestPosts()
+
+    override suspend fun registerLikeButtonState(postId: String, liked: Boolean) =
+        dataSource.registerLikeButtonState(postId,liked)
 }

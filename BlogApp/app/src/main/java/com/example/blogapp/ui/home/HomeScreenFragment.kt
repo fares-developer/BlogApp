@@ -56,7 +56,18 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen), OnPostClickL
 
     //Este método utilizaremos el viewModel para mandar la info a firebase
     override fun onLikeButtonClick(post: Post, liked: Boolean) {
-
+        viewModel.registerLikeButtonState(post.id,liked).observe(viewLifecycleOwner){
+            when (it) {
+                is Result.Loading ->{}
+                is Result.Success -> {}
+                is Result.Failure -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Se ha producido un error ${it.exeption}", Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 
 }

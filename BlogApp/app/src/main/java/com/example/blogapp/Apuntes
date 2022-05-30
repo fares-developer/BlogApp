@@ -197,6 +197,13 @@ distintas características y funcionalidades del post, creando métodos y otros.
 72. Ahorra procederemos al eliminar to-do lo concerciente a Flow para evitar que los datos estén
     actualizandose to-do el rato en tiempo real, lo cual consume muchos recursos del server
 
+Cuando hacemos like en un post nace un problema conocido en programación que es el de concurencia
+ya que dos usuarios podrían hacer like al mismo tiempo y lo que puede ocasionar problemas, es por eso
+que utilizaremos métodos que nos ayuden a comprobar si se está escribiendo o interactuando con ese
+post y hacer esperar hasta que esto cambie.
 
+73. En el HomeScreenViewModel creamos un método llamado registerLikeButtonState, también en los paquetes correspondientes
+
+74.
 
 
