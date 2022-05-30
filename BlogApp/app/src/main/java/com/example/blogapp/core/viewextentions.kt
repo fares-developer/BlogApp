@@ -1,8 +1,10 @@
 package com.example.blogapp.core
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import com.google.android.material.snackbar.Snackbar
 
@@ -15,6 +17,14 @@ fun View.hide() {
 fun View.show() {
     this.visibility = View.VISIBLE
 }
+
+fun View.hideKeyboard() {
+    val input_method_manager =
+        context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+    input_method_manager.hideSoftInputFromWindow(windowToken,0)
+}
+
 
 // ->> Esta extensión function la he creado para reducir código
 //Esta función se encarga de trabajar con el intent que lanza la cámara

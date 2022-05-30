@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.blogapp.R
 import com.example.blogapp.core.Result
 import com.example.blogapp.core.hide
+import com.example.blogapp.core.hideKeyboard
 import com.example.blogapp.core.show
 import com.example.blogapp.data.remote.auth.AuthDataSource
 import com.example.blogapp.databinding.FragmentLoginBinding
@@ -57,6 +58,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun doLogin() {
         binding.btnSignin.setOnClickListener {
+            it.hideKeyboard()//Para ocultar el teclado
             val email = binding.editTextEmail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
             validateCredentials(email, password)

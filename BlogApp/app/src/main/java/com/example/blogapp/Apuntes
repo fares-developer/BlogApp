@@ -206,6 +206,8 @@ post y hacer esperar hasta que esto cambie.
 
 74. En HomeScreenDataSource implementamos el método isPostLiked
 
-75.
+75. Creamos una extension function que nos ayuda a ocultar el teclado después de introducir texto
+
+76.
 
 
