@@ -25,13 +25,13 @@ class HomeScreenDataSource {
 
             for (post in querySnapshot.documents) {
                 //Transformamos el snapshot post a un Post objeto y lo añadimos a la lista de Post
-                post.toObject(Post::class.java)?.let {
+                post.toObject(Post::class.java)?.let { fbPost ->
 
                     val isLiked = FirebaseAuth.getInstance().currentUser?.let { safeUser ->
                         isPostLiked(post.id, safeUser.uid)
                     }
 
-                    it.apply {
+                    fbPost.apply {
                         //Obtengo un timeStamp estimado del servidor para que se nos muestre directamente
                         // al publicar el post
                         create_at = post.getTimestamp(
@@ -43,7 +43,7 @@ class HomeScreenDataSource {
                             liked = isLiked
                         }
                     }
-                    postList.add(it)
+                    postList.add(fbPost)
                 }
             }
         }
@@ -69,34 +69,32 @@ class HomeScreenDataSource {
         val decrement = FieldValue.increment(-1)
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid
-        val postRef = FirebaseFirestore.getInstance()
-            .collection("posts").document(postId)
-
-        val postLikesRef = FirebaseFirestore.getInstance()
-            .collection("postsLikes").document(postId)
+        val postRef = FirebaseFirestore.getInstance().collection("posts").document(postId)
+        val postsLikesRef = FirebaseFirestore.getInstance().collection("postsLikes").document(postId)
 
         val database = FirebaseFirestore.getInstance()
 
         database.runTransaction { transaction ->
             val snapshot = transaction.get(postRef)
-            val likesCount = snapshot.getLong("likes")
+            val likeCount = snapshot.getLong("likes")
+            if (likeCount != null) {
+                if (likeCount >= 0) {
+                    if (liked) {
+                        if (transaction.get(postsLikesRef).exists()) {
+                            transaction.update(postsLikesRef, "likes", FieldValue.arrayUnion(uid))
+                        } else {
+                            transaction.set(
+                                postsLikesRef,
+                                hashMapOf("likes" to arrayListOf(uid)),
+                                SetOptions.merge()
+                            )
+                        }
 
-            if (likesCount != null) {
-                if (liked) {
-                    if (transaction.get(postLikesRef).exists()) {
-                        transaction.update(postLikesRef, "likes", FieldValue.arrayUnion(uid))
+                        transaction.update(postRef, "likes", increment)
                     } else {
-                        transaction.set(
-                            postLikesRef, hashMapOf("likes" to arrayListOf(uid)),
-                            SetOptions.merge()
-                        )
+                        transaction.update(postRef, "likes", decrement)
+                        transaction.update(postsLikesRef, "likes", FieldValue.arrayRemove(uid))
                     }
-
-                    transaction.update(postRef, "likes", increment)
-
-                } else {
-                    transaction.update(postRef, "likes", decrement)
-                    transaction.update(postLikesRef, "likes", FieldValue.arrayRemove(uid))
                 }
             }
         }.addOnFailureListener {

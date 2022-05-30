@@ -13,6 +13,7 @@ import com.example.blogapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,22 +24,33 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
-        val navController = navHostFragment.navController
+        navController = navHostFragment.navController
         binding.bottomNavigationView
             .setupWithNavController(navController)
 
-        observeDestinationChange(navController)
+        observeDestinationChange()
 
     }
 
     //Controlamos el destino del navControler, utilizamos esto para ocultar el bottom en el login y registro
-    private fun observeDestinationChange(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.loginFragment -> binding.bottomNavigationView.hide()
-                R.id.registerFragment -> binding.bottomNavigationView.hide()
-                R.id.setupProfileFragment -> binding.bottomNavigationView.hide()
-                else -> binding.bottomNavigationView.show()
+    private fun observeDestinationChange() {
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when(destination.id) {
+                R.id.loginFragment -> {
+                    binding.bottomNavigationView.hide()
+                }
+
+                R.id.registerFragment -> {
+                    binding.bottomNavigationView.hide()
+                }
+
+                R.id.setupProfileFragment -> {
+                    binding.bottomNavigationView.hide()
+                }
+
+                else -> {
+                    binding.bottomNavigationView.show()
+                }
             }
         }
     }

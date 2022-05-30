@@ -13,13 +13,14 @@
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre Completo">
+        android:hint="@string/nombre_completo">
 
         <EditText
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
+            android:inputType="text"
+            tools:ignore="Autofill,LabelFor" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -29,13 +30,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="E-mail">
+        android:hint="E-mail"
+        tools:ignore="HardcodedText">
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill,LabelFor" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,14 +48,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Password"
+        android:hint="@string/password_register"
         app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill,LabelFor,TextFields" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,13 +67,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Confirm Password"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        tools:ignore="HardcodedText">
 
         <EditText
             android:id="@+id/editTextConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill,LabelFor,TextFields" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +84,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="SignUp" />
+        android:text="SignUp"
+        tools:ignore="HardcodedText" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

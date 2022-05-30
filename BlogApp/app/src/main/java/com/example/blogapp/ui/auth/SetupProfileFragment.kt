@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.blogapp.R
 import com.example.blogapp.core.Result
+import com.example.blogapp.core.hideKeyboard
 import com.example.blogapp.core.launchCamera
 import com.example.blogapp.core.show
 import com.example.blogapp.data.remote.auth.AuthDataSource
@@ -35,7 +36,6 @@ class SetupProfileFragment : Fragment(R.layout.fragment_setup_profile) {
         }
     }
 
-
     private val viewModel by viewModels<AuthViewModel> {
         AuthViewModelFactory(AuthRepoImp(AuthDataSource()))
     }
@@ -51,7 +51,7 @@ class SetupProfileFragment : Fragment(R.layout.fragment_setup_profile) {
         }
 
         binding.btnCreateProfile.setOnClickListener {
-
+            it.hideKeyboard()
             val username = binding.editTextUsername.text.toString().trim()
             val alertDialog =
                 AlertDialog.Builder(requireContext()).setTitle("Uploading Photo....").create()
@@ -76,6 +76,5 @@ class SetupProfileFragment : Fragment(R.layout.fragment_setup_profile) {
                 }
             }
         }
-
     }
 }

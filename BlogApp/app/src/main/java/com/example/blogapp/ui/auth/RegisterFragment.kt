@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.blogapp.R
 import com.example.blogapp.core.Result
 import com.example.blogapp.core.hide
+import com.example.blogapp.core.hideKeyboard
 import com.example.blogapp.core.show
 import com.example.blogapp.data.remote.auth.AuthDataSource
 import com.example.blogapp.databinding.FragmentRegisterBinding
@@ -25,7 +26,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentRegisterBinding.bind(view)
         signUp()
 
@@ -34,7 +34,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     private fun signUp() {
 
         binding.btnSignup.setOnClickListener {
-
+            it.hideKeyboard()
             val username = binding.editTextUsername.text.toString().trim()
             val email = binding.editTextEmail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
@@ -42,8 +42,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
             validateUserData(password, confirmPassword, username, email)
             createUser(email,password,username)
-
-
         }
     }
 
@@ -63,7 +61,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 is Result.Failure -> {
                     binding.progressBar.hide()
                     binding.btnSignup.isEnabled = true
-                    Snackbar.make(requireView(), "Error: ${result.exeption}", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(requireView(), "Error: ${result.exception}", Snackbar.LENGTH_SHORT)
                         .show()
                 }
             }

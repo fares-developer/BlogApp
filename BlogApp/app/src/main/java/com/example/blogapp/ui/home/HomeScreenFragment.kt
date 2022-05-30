@@ -30,24 +30,24 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen), OnPostClickL
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentHomeScreenBinding.bind(view)
-        viewModel.fetchLatestPost().observe(viewLifecycleOwner, Observer {
-            when (it) {
+        viewModel.fetchLatestPosts().observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
                 is Result.Loading -> binding.progressBar.show()
                 is Result.Success -> {
                     binding.progressBar.hide()
-                    if (it.data.isEmpty()) {
+                    if (result.data.isEmpty()) {
                         binding.emptyContainer.show()
                         return@Observer //Esto evita que continue en la siguiente línea de código
-                    }else{
+                    } else {
                         binding.emptyContainer.hide()
                     }
-                    binding.rvHome.adapter = HomeScreenAdapter(it.data,this)
+                    binding.rvHome.adapter = HomeScreenAdapter(result.data, this)
                 }
                 is Result.Failure -> {
                     binding.progressBar.hide()
                     Toast.makeText(
                         requireContext(),
-                        "Se ha producido un error ${it.exeption}", Toast.LENGTH_SHORT
+                        "Se ha producido un error ${result.exception}", Toast.LENGTH_SHORT
                     ).show()
                 }
             }
@@ -56,18 +56,17 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen), OnPostClickL
 
     //Este método utilizaremos el viewModel para mandar la info a firebase
     override fun onLikeButtonClick(post: Post, liked: Boolean) {
-        viewModel.registerLikeButtonState(post.id,liked).observe(viewLifecycleOwner){
-            when (it) {
-                is Result.Loading ->{}
+        viewModel.registerLikeButtonState(post.id, liked).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {}
                 is Result.Success -> {}
                 is Result.Failure -> {
                     Toast.makeText(
                         requireContext(),
-                        "Se ha producido un error ${it.exeption}", Toast.LENGTH_SHORT
+                        "Se ha producido un error ${result.exception}", Toast.LENGTH_SHORT
                     ).show()
                 }
             }
         }
     }
-
 }

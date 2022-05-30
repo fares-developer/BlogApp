@@ -1,6 +1,7 @@
 package com.example.blogapp.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -15,11 +16,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentProfileBinding.bind(view)
         val user = FirebaseAuth.getInstance().currentUser
         Glide.with(this).load(user?.photoUrl).centerCrop().into(binding.imageProfile)
-        //binding.imgProfile
+        binding.imageProfile
         binding.textProfileName.text = user?.displayName
+        //Log.d("Usuario:", "fotourl: ${user?.photoUrl} , nombre: ${user?.displayName} ")
     }
 }

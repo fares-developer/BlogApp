@@ -8,50 +8,50 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 
 class AuthDataSource {
 
     suspend fun signIn(email: String, password: String): FirebaseUser? {
-        val authResutl =
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).await()
-        return authResutl.user
+        return withContext(Dispatchers.IO) {
+            val authResult =
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).await()
+            authResult.user
+        }
     }
 
     suspend fun signUp(email: String, password: String, username: String): FirebaseUser? {
-        val authResutl =
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).await()
-        //Accedemos al uid del usuario actual
-        authResutl.user?.uid?.let {
-            FirebaseFirestore.getInstance()
-                .collection("users")
-                .document(it).set(User(email,username)).await()
+        return withContext(Dispatchers.IO) {
+            val authResult =
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).await()
+            authResult.user?.uid?.let { uid ->
+                FirebaseFirestore.getInstance().collection("users").document(uid).set(
+                    User(
+                        email,
+                        username
+                    )
+                )
+            }
+            authResult.user
         }
-        return authResutl.user
     }
 
-    suspend fun updataUserProfile(imageBitmap:Bitmap, username: String){
-
-        //Accedemos al usuario actual
+    suspend fun updateUserProfile(imageBitmap: Bitmap, username: String) {
         val user = FirebaseAuth.getInstance().currentUser
-        //Creamos una carpeta en firebase que se llamae profile
-        val imageRef = FirebaseStorage
-            .getInstance().reference.child("${user?.uid}/profile_picture")
-
-        //Comprimimos la imagen
+        val imageRef = FirebaseStorage.getInstance().reference.child("${user?.uid}/profile_picture")
         val baos = ByteArrayOutputStream()
-        imageBitmap.compress(Bitmap.CompressFormat.PNG,100,baos)
-
-        //Accedemos a la url de la imagen
-        //Esto carga la foto en firebase y espera que acabe, luego la obtenemos
-        val downloadUrl = imageRef.putBytes(baos.toByteArray()).await().storage.downloadUrl.await().toString()
-
-        //Actualizamos el profile, más info en la documentación de firebase en Android/Manage Users
-        val profileUpdates = UserProfileChangeRequest.Builder()
-            .setDisplayName(username)
-            .setPhotoUri(Uri.parse(downloadUrl)).build()
-
-        user?.updateProfile(profileUpdates)?.await()
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        var downloadUrl: String
+        withContext(Dispatchers.IO) {
+            downloadUrl = imageRef.putBytes(baos.toByteArray()).await().storage.downloadUrl.await().toString()
+            val profileUpdates = UserProfileChangeRequest.Builder()
+                .setDisplayName(username)
+                .setPhotoUri(Uri.parse(downloadUrl))
+                .build()
+            user?.updateProfile(profileUpdates)?.await()
+        }
     }
 }

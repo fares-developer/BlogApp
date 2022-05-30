@@ -11,7 +11,7 @@ data class Post(
     var create_at: Date? = null,//Por ejemplo hace 2 horas
     val post_image: String = "",//Imagen que mostraremos al usuario
     val post_description: String = "",
-    val poster: Poster? ,
+    val poster: Poster? = null ,
     val likes: Long = 0,
     @Exclude @JvmField //Esto evita que la aplicación se rompa ya que liked no existe en firebase
     var liked: Boolean = false

@@ -11,21 +11,23 @@
         android:id="@+id/post_image"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:src="@drawable/ic_round_add_a_photo_24"/>
+        android:src="@drawable/ic_round_add_a_photo_24"
+        tools:ignore="ContentDescription" />
 
-        <EditText
+    <EditText
         android:id="@+id/photo_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
-        android:hint="Type photo description"/>
+        android:hint="Type photo description"
+        tools:ignore="Autofill,HardcodedText,TextFields" />
 
     <Button
         android:id="@+id/btn_upload_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Upload Photo"/>
+        android:text="@string/upload_photo" />
 
 
 </LinearLayout>

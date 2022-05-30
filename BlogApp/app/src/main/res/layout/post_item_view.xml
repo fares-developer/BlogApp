@@ -69,7 +69,8 @@
         android:paddingVertical="16dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/post">
+        app:layout_constraintTop_toBottomOf="@id/post"
+        tools:ignore="UseCompoundDrawables">
         
         <ImageView
             android:id="@+id/btn_like"

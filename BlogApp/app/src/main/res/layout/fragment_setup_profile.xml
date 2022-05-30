@@ -13,7 +13,8 @@
         android:layout_height="200dp"
         android:src="@drawable/ic_round_add_a_photo_24"
         android:layout_gravity="center"
-        android:layout_marginVertical="16dp" />
+        android:layout_marginVertical="16dp"
+        tools:ignore="ContentDescription" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -23,7 +24,8 @@
             android:id="@+id/edit_text_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type your name" />
+            android:hint="@string/type_your_name"
+            tools:ignore="Autofill,TextFields" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -33,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:text="Create Profile" />
+        android:text="@string/create_profile" />
 
 
 </LinearLayout>

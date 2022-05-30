@@ -38,16 +38,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         goToSignUpPage()
     }
 
-    private fun goToSignUpPage() {
-        binding.txtSignup.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-        }
-    }
-
     private fun isUserLoggedIn() {
 
         firebaseAuth.currentUser?.let {
-            if (it.displayName.toString().isNullOrEmpty()) {
+            if (it.displayName.isNullOrEmpty()) {
                 findNavController().navigate(R.id.action_loginFragment_to_setupProfileFragment)
             } else {
                 findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment)
@@ -62,7 +56,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             val password = binding.editTextPassword.text.toString().trim()
             validateCredentials(email, password)
             signIn(email, password)
+        }
+    }
 
+    private fun goToSignUpPage() {
+        binding.txtSignup.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
     }
 
@@ -98,11 +97,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 is Result.Failure -> {
                     binding.progressBar.hide()
                     binding.btnSignin.isEnabled = true
-                    Snackbar.make(requireView(), "Error: ${it.exeption}", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(requireView(), "Error: ${it.exception}", Snackbar.LENGTH_SHORT)
                         .show()
                 }
             }
         }
     }
-
 }

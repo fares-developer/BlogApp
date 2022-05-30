@@ -15,8 +15,10 @@ import com.example.blogapp.data.model.Post
 import com.example.blogapp.databinding.PostItemViewBinding
 
 //Esta clase se encarga de que el recyclerView muestro los datos como le indicamos
-class HomeScreenAdapter(private val postList: List<Post>, onPostClickListener: OnPostClickListener) :
-    RecyclerView.Adapter<BaseViewHolder<*>>() {
+class HomeScreenAdapter(
+    private val postList: List<Post>,
+    onPostClickListener: OnPostClickListener
+) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     private var postClickListener: OnPostClickListener? = null
 
@@ -60,15 +62,14 @@ class HomeScreenAdapter(private val postList: List<Post>, onPostClickListener: O
             Glide.with(context).load(post.poster?.profile_picture).centerCrop()
                 .into(binding.profilePicture)
             binding.profileName.text = post.poster?.username
-
         }
 
         private fun addPostTimeStamp(post: Post) {
             //Obtenemos el tiempo del servidor y lo transformamos
-            val createAt = (post.create_at?.time?.div(1000L))?.let {
+            val createdAt = (post.create_at?.time?.div(1000L))?.let {
                 TimeUtils.getTimeAgo(it.toInt())
             }
-            binding.postTimestamp.text = createAt
+            binding.postTimestamp.text = createdAt
         }
 
         private fun setupPostImage(item: Post) {
@@ -90,7 +91,7 @@ class HomeScreenAdapter(private val postList: List<Post>, onPostClickListener: O
                 binding.btnLike.setImageDrawable(
                     ContextCompat.getDrawable(
                         context,
-                        R.drawable.ic_round_favorite_24
+                        R.drawable.ic_round_favorite_border_24
                     )
                 )
 
@@ -98,7 +99,7 @@ class HomeScreenAdapter(private val postList: List<Post>, onPostClickListener: O
                 binding.btnLike.setImageDrawable(
                     ContextCompat.getDrawable(
                         context,
-                        R.drawable.ic_round_favorite_border_24
+                        R.drawable.ic_round_favorite_24
                     )
                 )
             }
@@ -107,7 +108,7 @@ class HomeScreenAdapter(private val postList: List<Post>, onPostClickListener: O
         private fun setupLikeCount(item: Post) {
             if (item.likes > 0) {
                 binding.likeCount.show()
-                binding.likeCount.text = "${item.likes} likes"
+                "${item.likes} likes".also { binding.likeCount.text = it }
             } else {
                 binding.likeCount.hide()
             }
@@ -115,11 +116,11 @@ class HomeScreenAdapter(private val postList: List<Post>, onPostClickListener: O
 
         //Esta función se encarga de, si el like está pintado se despinte y viceversa, luego usamos
         // el postListener para mandar el click a nuestro fragment
-        private fun setLikeClickAction(item: Post) {
+        private fun setLikeClickAction(post: Post) {
             binding.btnLike.setOnClickListener {
-                if(item.liked) item.apply { liked = false } else item.apply { liked = true }
-                tintHeartIcon(item)
-                postClickListener?.onLikeButtonClick(item,item.liked)
+                if(post.liked) post.apply { liked = false } else post.apply { liked = true }
+                tintHeartIcon(post)
+                postClickListener?.onLikeButtonClick(post, post.liked)
             }
         }
     }
@@ -127,6 +128,6 @@ class HomeScreenAdapter(private val postList: List<Post>, onPostClickListener: O
 }
 
 //Esta interfaz nos ayudará a saber si se ha hecho like o no en un post
-interface OnPostClickListener{
-    fun onLikeButtonClick(post:Post,liked: Boolean)
+interface OnPostClickListener {
+    fun onLikeButtonClick(post: Post, liked: Boolean)
 }

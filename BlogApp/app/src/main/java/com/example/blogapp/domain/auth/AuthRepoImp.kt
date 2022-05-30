@@ -15,5 +15,5 @@ class AuthRepoImp(private val dataSource: AuthDataSource) : AuthRepo {
         dataSource.signUp(email, password, username)
 
     override suspend fun updateProfile(imageBitMap: Bitmap, username: String) =
-        dataSource.updataUserProfile(imageBitMap,username)
+        dataSource.updateUserProfile(imageBitMap,username)
 }

@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.blogapp.R
 import com.example.blogapp.core.Result
+import com.example.blogapp.core.hideKeyboard
 import com.example.blogapp.core.launchCamera
 import com.example.blogapp.data.remote.camera.CameraDataSource
 import com.example.blogapp.databinding.FragmentCameraBinding
@@ -50,6 +51,7 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
             )
         }
         binding.btnUploadPhoto.setOnClickListener {
+            it.hideKeyboard()
             bitmap?.let {
                 viewModel.uploadPhoto(it, binding.photoDescription.text.toString().trim())
                     .observe(viewLifecycleOwner) { result ->
@@ -62,20 +64,18 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
                                 ).show()
                             }
                             is Result.Success -> {
-                                findNavController().popBackStack()//Esto hace que navegue a la pantalla princiapal
-                                //findNavController().navigate(R.id.action_cameraFragment_to_homeScreenFragment)
+                                // findNavController().popBackStack()//Esto hace que navegue a la pantalla princiapal
+                                findNavController().navigate(R.id.action_cameraFragment_to_homeScreenFragment)
                             }
                             is Result.Failure -> {
                                 Toast.makeText(
                                     requireContext(),
-                                    "Error: ${result.exeption}",
+                                    "Error: ${result.exception}",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
-
                         }
                     }
-
             }
         }
     }

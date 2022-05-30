@@ -5,4 +5,12 @@
     <string name="mensaje_sin_post">Aún no se creó ningún post, crea el primero con la opción Take Photo</string>
     <string name="description">This is photo description</string>
     <string name="likes">2 likes</string>
+    <string name="signin">SignIn</string>
+    <string name="not_have_an_account_sign_up">Not have an account? Sign Up</string>
+    <string name="password">Password</string>
+    <string name="nombre_completo">Nombre Completo</string>
+    <string name="password_register">Password</string>
+    <string name="type_your_name">Type your name</string>
+    <string name="create_profile">Create Profile</string>
+    <string name="upload_photo">Upload Photo</string>
 </resources>
