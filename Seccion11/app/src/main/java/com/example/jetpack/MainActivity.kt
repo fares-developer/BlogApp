@@ -3,9 +3,13 @@ package com.example.jetpack
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,48 +20,69 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+data class Recipe(
+    @DrawableRes val imageResource: Int,
+    val title: String,
+    val ingredients: List<String>
+)
+
+val recipesList = listOf(
+    Recipe(R.drawable.food, "Merienda", listOf("Pizza", "Pollo", "Cocacola")),
+    Recipe(R.drawable.gofres, "Desayuno", listOf("Cerezas", "Café", "Margaritas")),
+    Recipe(R.drawable.pasta, "Italiana", listOf("Espaguetis", "Macarones", "Rabiolis"))
+)
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NewsStory()
+            RecipeColumnList(recipeList = recipesList)
         }
     }
 
-    //Es recomendable que las funciones composables empiezan por mayúsuclas
     @Composable
-    private fun NewsStory() {
+    private fun RecipeColumnList(recipeList: List<Recipe>) {
+        /*Lazy column es como un RecyclerView */
+        LazyColumn {
+            //Le mandamos nuestra lista de recetas
+            items(recipeList) { recipe ->
+                RecipeCard(recipe = recipe)
+            }
+        }
+    }
 
-        val image = painterResource(id = R.drawable.tezos)
 
-        //creamos una variable para modificar las características de la imagen
-        val imageModifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp)
-            .clip(shape = RoundedCornerShape(16.dp))//Bordes redondos
+    @Composable
+    private fun RecipeCard(recipe: Recipe) {
+        val image = painterResource(id = recipe.imageResource)
 
+        Card(
+            shape = RoundedCornerShape(8.dp), elevation = 8.dp, modifier = Modifier.padding(8.dp)
+        ) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                val imageModifier = Modifier
+                    .requiredHeight(150.dp)
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.dp))
 
-        //Nos permite organizar vistas, es como un lineraLayout vertical
-        //El modifier nos permite personalizar nuestro column
-        Column(modifier = Modifier.padding(16.dp)) {
-            Image(image,
-                contentDescription = "Mi Avatar",
-                modifier = imageModifier,
-                contentScale = ContentScale.Crop)
+                Image(
+                    contentDescription = "Recipe Photo", painter = image, modifier = imageModifier,
+                    contentScale = ContentScale.Crop,
+                )
 
-            Spacer(modifier = Modifier.padding(top = 8.dp))
+                Spacer(modifier = Modifier.padding(top = 10.dp))
+                Text(text = recipe.title, style = MaterialTheme.typography.h6)
 
-            Text(text = "News Title", style = MaterialTheme.typography.h6)
-            Text(text = "News Description", style = MaterialTheme.typography.body1)
-            Text(text = "Footer", style = MaterialTheme.typography.body2)
-
+                for (ingredient in recipe.ingredients) {
+                    Text(text = "• $ingredient", style = MaterialTheme.typography.body2)
+                }
+            }
         }
     }
 
     @Preview(showBackground = true)
     @Composable
-    fun Preview() {
-        NewsStory()
+    private fun PreviewNewsStory() {
+        RecipeColumnList(recipeList = recipesList)
     }
-
 }
