@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,11 +28,13 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun NewsStory() {
 
-        val image = painterResource(id = R.drawable.avatar)
+        val image = painterResource(id = R.drawable.tezos)
 
         //creamos una variable para modificar las características de la imagen
         val imageModifier = Modifier
-            .width(200.dp).height(200.dp)
+            .fillMaxWidth()
+            .height(200.dp)
+            .clip(shape = RoundedCornerShape(16.dp))//Bordes redondos
 
 
         //Nos permite organizar vistas, es como un lineraLayout vertical
@@ -43,14 +45,16 @@ class MainActivity : ComponentActivity() {
                 modifier = imageModifier,
                 contentScale = ContentScale.Crop)
 
-            Text(text = "News Title")
-            Text(text = "News Description")
-            Text(text = "Footer")
+            Spacer(modifier = Modifier.padding(top = 8.dp))
+
+            Text(text = "News Title", style = MaterialTheme.typography.h6)
+            Text(text = "News Description", style = MaterialTheme.typography.body1)
+            Text(text = "Footer", style = MaterialTheme.typography.body2)
 
         }
     }
 
-    @Preview
+    @Preview(showBackground = true)
     @Composable
     fun Preview() {
         NewsStory()
