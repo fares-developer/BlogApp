@@ -1,12 +1,13 @@
 package com.example.jetpack
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -47,18 +48,23 @@ class MainActivity : ComponentActivity() {
         LazyRow {
             //Le mandamos nuestra lista de recetas
             items(recipeList) { recipe ->
-                RecipeCard(recipe = recipe)
+                RecipeCard(recipe = recipe, onRecipeClick = {
+                    Toast.makeText(this@MainActivity,"${it.title} Selected",Toast.LENGTH_SHORT).show()
+                })
             }
         }
     }
 
 
     @Composable
-    private fun RecipeCard(recipe: Recipe) {
+    private fun RecipeCard(recipe: Recipe, onRecipeClick:(Recipe) -> Unit) {
         val image = painterResource(id = recipe.imageResource)
 
         Card(
-            shape = RoundedCornerShape(8.dp), elevation = 8.dp, modifier = Modifier.padding(8.dp)
+            shape = RoundedCornerShape(8.dp),
+            elevation = 8.dp,
+            modifier = Modifier.padding(8.dp)
+                .clickable { onRecipeClick(recipe) }//Para cunado hacemos click en el card
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 val imageModifier = Modifier
