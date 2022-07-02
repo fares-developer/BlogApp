@@ -1,6 +1,0 @@
-
-Apuntes de Jetpack Compose
-
-Jetpack Compose es un conjunto de librerías que nos permiten crear nuestra interfaz de usuario
-sin recurrir al código xml. Todo lo que veremos en pantalla a de ir dentro del método setContent
-en el onCreate, dentro del SetContent sólo pueden ir funciones composables.
